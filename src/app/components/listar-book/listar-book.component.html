@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12 ">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="title">LLIST OF BOOKS</span>
+                    <!-- <button class="btn btn-success float-end" routerLink="/crear-event">NOU EVENT</button> -->
+                    <table *ngIf="listBooks.length > 0" class="table table-striped mt-3">
+                     <thead>
+                       <tr>
+                         <th scope="col">Title</th>
+                         <th scope="col">Category</th>
+                         <th scope="col">ISBN</th>
+                         <th scope="col">ReleaseDate</th>
+                         <th scope="col">PublicationDate</th>
+                         <th scope="col">Format</th>
+                         <th scope="col">Quantity</th>
+                         <th scope="col">Sells</th>
+                         <th scope="col">Description</th>
+                         <th scope="col"></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr *ngFor="let event of listBooks">
+                         <td>{{ event.title }}</td>
+                         <td>{{ event.category | slice:0:10}}</td>
+                         <td>{{ event.ISBN }}</td>
+                         <td>{{ event.releaseDate }}</td>
+                         <td>{{ event.publicationDate }}</td>
+                         <td>{{ event.format }}</td>
+                         <td>{{ event.quantity }}</td>
+                         <td>{{ event.sells }}</td>
+                         <td>{{ event.description }}</td>
+                         <td>
+                             <i [routerLink]="['/editar-book', event.title]" class="fa-solid fa-pen-to-square text-primary"></i>
+                             <i (click)="deleteBook(event.title)" class="fa-solid fa-trash text-danger"></i>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <h5 style="text-align: start; margin-top: 10px;" *ngIf="listBooks.length == 0">No hi ha books a la base de dades</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
