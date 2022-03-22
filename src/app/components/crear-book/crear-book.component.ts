@@ -25,10 +25,11 @@ export class CrearBookComponent implements OnInit {
               private aRouter: ActivatedRoute) { 
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
+      author: ['', Validators.required],
       category: ['', Validators.required],
       ISBN: ['', Validators.required],
-      releaseDate: ['', Validators.required],
-      publicationDate: ['', Validators.required],
+      releaseDate: [''],
+      publicationDate: [''],
       format: ['', Validators.required],
       quantity: ['', Validators.required],
       sells: ['', Validators.required],
@@ -46,6 +47,7 @@ export class CrearBookComponent implements OnInit {
   addBook() {
     const book: Book = {
       title: this.bookForm.get('title')?.value,
+      author: this.bookForm.get('author')?.value,
       category: this.bookForm.get('category')?.value,
       ISBN: this.bookForm.get('ISBN')?.value,
       releaseDate: this.bookForm.get('releaseDate')?.value,

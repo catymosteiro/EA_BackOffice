@@ -12,22 +12,22 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.url + '/events');
+    return this.http.get<Event[]>(this.url + '/event');
   }
 
   deleteEvent(name: string): Observable<string> {
-    return this.http.delete(this.url + '/events/' + name, {responseType: 'text'})
+    return this.http.delete(this.url + '/event/' + name, {responseType: 'text'})
   }
 
   addEvent(event: Event): Observable<string> {
-    return this.http.post(this.url + '/events', event, {responseType: 'text'}) ;
+    return this.http.post(this.url + '/event/Sergi', event, {responseType: 'text'}) ;
   }
 
   getEvent(name: string): Observable<Event> {
-    return this.http.get<Event>(this.url + '/events/' + name);
+    return this.http.get<Event>(this.url + '/event/' + name);
   }
 
   editEvent(name: string, event: Event): Observable<string> {
-    return this.http.put(this.url + '/events/' + name, event, {responseType: 'text'});
+    return this.http.put(this.url + '/event/' + name, event, {responseType: 'text'});
   }
 }

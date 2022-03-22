@@ -24,10 +24,13 @@ export class CrearEventComponent implements OnInit {
               private _eventService: EventService,
               private aRouter: ActivatedRoute) { 
     this.eventForm = this.fb.group({
-      id: ['', Validators.required],
       name: ['', Validators.required],
-      place: ['', Validators.required],
-      eventDate: ['', Validators.required],
+      description: ['', Validators.required],
+      admin: [''],
+      evecreationDate: [''],
+      usersList: [''],
+      category: ['', Validators.required],
+      position: [''],
     });
     
     this.name = this.aRouter.snapshot.paramMap.get('name');

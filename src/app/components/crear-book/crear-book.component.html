@@ -14,6 +14,14 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <input type="text" formControlName="author" 
+                                class="form-control form-control-lg" placeholder="author">
+                            <div class="text-danger"
+                                *ngIf="bookForm.get('author')?.hasError('required') && bookForm.get('author')?.touched">
+                                <span>The author is required</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <input type="text" formControlName="category" 
                                 class="form-control form-control-lg" placeholder="category">
                             <div class="text-danger"

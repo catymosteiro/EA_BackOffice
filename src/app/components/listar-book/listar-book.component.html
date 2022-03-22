@@ -3,7 +3,7 @@
         <div class="col-lg-12 ">
             <div class="card">
                 <div class="card-body text-center">
-                    <span class="title">LLIST OF BOOKS</span>
+                    <span class="title">BOOKS LIST</span>
                     <!-- <button class="btn btn-success float-end" routerLink="/crear-event">NOU EVENT</button> -->
                     <table *ngIf="listBooks.length > 0" class="table table-striped mt-3">
                      <thead>
@@ -33,7 +33,7 @@
                          <td>{{ event.description }}</td>
                          <td>
                              <i [routerLink]="['/editar-book', event.title]" class="fa-solid fa-pen-to-square text-primary"></i>
-                             <i (click)="deleteBook(event.title)" class="fa-solid fa-trash text-danger"></i>
+                             <i (click)="deleteBook(event.ISBN)" class="fa-solid fa-trash text-danger"></i>
                          </td>
                        </tr>
                      </tbody>

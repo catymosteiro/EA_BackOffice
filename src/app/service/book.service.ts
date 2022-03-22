@@ -15,19 +15,19 @@ export class BookService {
     return this.http.get<Book[]>(this.url + '/book');
   }
 
-  deleteBook(name: string): Observable<string> {
-    return this.http.delete(this.url + '/book/' + name, {responseType: 'text'})
+  deleteBook(ISBN: string): Observable<string> {
+    return this.http.delete(this.url + '/book/' + ISBN, {responseType: 'text'})
   }
 
   addBook(book: Book): Observable<string> {
-    return this.http.post(this.url + '/books', book, {responseType: 'text'}) ;
+    return this.http.post(this.url + '/book', book, {responseType: 'text'}) ;
   }
 
   getBook(name: string): Observable<Book> {
-    return this.http.get<Book>(this.url + '/books/' + name);
+    return this.http.get<Book>(this.url + '/book/' + name);
   }
 
   editBook(name: string, book: Book): Observable<string> {
-    return this.http.put(this.url + '/books/' + name, book, {responseType: 'text'});
+    return this.http.put(this.url + '/book/' + name, book, {responseType: 'text'});
   }
 }

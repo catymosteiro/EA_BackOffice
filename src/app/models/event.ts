@@ -1,7 +1,6 @@
 import { User } from "./user";
 
 export class Event {
-    _id?: number;
     name: string;
     description: string;
     admin: User;
@@ -24,4 +23,5 @@ export class Event {
         this.category = category;
         this.position = position 
     }
+
 }
