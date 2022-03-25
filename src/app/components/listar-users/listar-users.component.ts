@@ -6,45 +6,33 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-listar-users',
   templateUrl: './listar-users.component.html',
-  styleUrls: ['./listar-users.component.css'],
+  styleUrls: ['./listar-users.component.css']
 })
 export class ListarUsersComponent implements OnInit {
   listUsers: User[] = [];
 
-  constructor(
-    private _userService: UserService,
-    private toastr: ToastrService
-  ) {}
-
+  constructor(private _userService: UserService,
+        private toastr: ToastrService) { }
+  
   ngOnInit(): void {
     this.getUsers();
   }
 
   getUsers() {
-    this._userService.getUsers().subscribe(
-      (data) => {
-        console.log(data);
-        this.listUsers = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this._userService.getUsers().subscribe(data => {
+      console.log(data);
+      this.listUsers = data;
+    }, error => {
+      console.log(error);
+    })
   }
 
-  //todo passar a id
   deleteUser(name: string) {
-    this._userService.deleteUser(name).subscribe(
-      (data: Object) => {
-        this.toastr.error(
-          'El user ha estat eliminat amb exit',
-          'User eliminat'
-        );
-        this.getUsers();
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+    this._userService.deleteUser(name).subscribe(data => {
+      this.toastr.error('El user ha estat eliminat amb exit', 'User eliminat');
+      this.getUsers();
+    }, error => {
+      console.log(error);
+    })
   }
 }
