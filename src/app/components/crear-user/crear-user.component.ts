@@ -11,18 +11,20 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-crear-user',
   templateUrl: './crear-user.component.html',
-  styleUrls: ['./crear-user.component.css']
+  styleUrls: ['./crear-user.component.css'],
 })
 export class CrearUserComponent implements OnInit {
   userForm: FormGroup;
-  title = "Crear User";
+  title = 'Crear User';
   name: string | null;
 
-  constructor(private fb: FormBuilder, 
-              private router: Router, 
-              private toastr: ToastrService,
-              private _userService: UserService,
-              private aRouter: ActivatedRoute) { 
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService,
+    private _userService: UserService,
+    private aRouter: ActivatedRoute
+  ) {
     this.userForm = this.fb.group({
       id: ['', Validators.required],
       name: ['', Validators.required],
@@ -39,48 +41,54 @@ export class CrearUserComponent implements OnInit {
   }
 
   addUser() {
+    //todo convert all user to my user
+    //@ts-ignore
     const user: User = {
-      id: this.userForm.get('id')?.value,
+      _id: this.userForm.get('id')?.value,
       name: this.userForm.get('name')?.value,
-      age: this.userForm.get('age')?.value,
+      birthDate: this.userForm.get('age')?.value,
       password: this.userForm.get('password')?.value,
-    }
+    };
 
-    if(this.name !== null){
+    if (this.name !== null) {
       // Edit user
-      this._userService.editUser(this.name, user).subscribe(data => {
-        this.toastr.info('El user ha estat editat amb exit!', 'User Editat');
-        this.router.navigate(['/']);
-      }, error => {
-        console.log(error);
-        this.userForm.reset();
-      })
-    }
-    else {
+      this._userService.editUser(this.name, user).subscribe(
+        (data) => {
+          this.toastr.info('El user ha estat editat amb exit!', 'User Editat');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.log(error);
+          this.userForm.reset();
+        }
+      );
+    } else {
       // Add user
       console.log(user);
-      this._userService.addUser(user).subscribe(data => {
-        this.toastr.success('El user ha estat creat amb exit!', 'User Creat');
-        this.router.navigate(['/']);
-      }, error => {
-        console.log(error);
-        this.userForm.reset();
-      })
+      this._userService.addUser(user).subscribe(
+        (data) => {
+          this.toastr.success('El user ha estat creat amb exit!', 'User Creat');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.log(error);
+          this.userForm.reset();
+        }
+      );
     }
   }
 
   editUser() {
-    if(this.name !== null) {
+    if (this.name !== null) {
       this.title = 'Editar user';
-      this._userService.getUser(this.name).subscribe(data => {
+      this._userService.getUser(this.name).subscribe((data) => {
         this.userForm.setValue({
-          id: data.id,
+          _id: data._id,
           name: data.name,
-          age: data.age,
+          birthDate: data.birthDate,
           password: data.password,
-        })
-      })
+        });
+      });
     }
   }
-
 }

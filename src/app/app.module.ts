@@ -15,6 +15,8 @@ import { CrearEventComponent } from './components/crear-event/crear-event.compon
 import { ListarTodoComponent } from './components/listar-todo/listar-todo.component';
 import { CrearBookComponent } from './components/crear-book/crear-book.component';
 import { ListarBookComponent } from './components/listar-book/listar-book.component';
+import { ChatCreateComponent } from './components/chat-create/chat-create.component';
+import { ChatListComponent } from './components/chat-list/chat-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ListarBookComponent } from './components/listar-book/listar-book.compon
     CrearEventComponent,
     ListarTodoComponent,
     CrearBookComponent,
-    ListarBookComponent
+    ListarBookComponent,
+    ChatCreateComponent,
+    ChatListComponent
   ],
   imports: [
     BrowserModule,
