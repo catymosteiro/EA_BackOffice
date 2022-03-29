@@ -49,8 +49,8 @@ export class ListarUsersComponent implements OnInit {
   }
 
   //todo passar a id
-  deleteUser(name: string) {
-    this._userService.deleteUser(name).subscribe(
+  deleteUser(id: string) {
+    this._userService.deleteUser(id).subscribe(
       (data: Object) => {
         this.toastr.error(
           'El user ha estat eliminat amb exit',
