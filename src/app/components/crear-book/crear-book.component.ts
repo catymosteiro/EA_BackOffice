@@ -16,7 +16,7 @@ import { BookService } from 'src/app/service/book.service';
 export class CrearBookComponent implements OnInit {
   bookForm: FormGroup;
   title = "Add Book";
-  name: string | null;
+  _id: string | null;
 
   constructor(private fb: FormBuilder, 
               private router: Router, 
@@ -24,20 +24,18 @@ export class CrearBookComponent implements OnInit {
               private _bookService: BookService,
               private aRouter: ActivatedRoute) { 
     this.bookForm = this.fb.group({
-      title: ['', Validators.required],
-      author: ['', Validators.required],
-      category: ['', Validators.required],
-      ISBN: ['', Validators.required],
+      title: [''],
+      ISBN: [''],
+      photoURL: [''],
+      description: [''],
       releaseDate: [''],
-      publicationDate: [''],
-      format: ['', Validators.required],
-      quantity: ['', Validators.required],
-      sells: ['', Validators.required],
-      description: ['', Validators.required],
+      editorial: [''],
+      rate: [''],
+      categories: [''],
     });
 
-    this.name = this.aRouter.snapshot.paramMap.get('name');
-    console.log(this.name);
+    this._id = this.aRouter.snapshot.paramMap.get('_id');
+    console.log(this._id);
   }
 
   ngOnInit(): void {
@@ -47,58 +45,58 @@ export class CrearBookComponent implements OnInit {
   addBook() {
     const book: Book = {
       title: this.bookForm.get('title')?.value,
-      author: this.bookForm.get('author')?.value,
-      category: this.bookForm.get('category')?.value,
       ISBN: this.bookForm.get('ISBN')?.value,
-      releaseDate: this.bookForm.get('releaseDate')?.value,
-      publicationDate: this.bookForm.get('releaseDate')?.value,
-      format: this.bookForm.get('format')?.value,
-      quantity: this.bookForm.get('quantity')?.value,
-      sells: this.bookForm.get('sells')?.value,
+      photoURL: this.bookForm.get('photoURL')?.value,
       description: this.bookForm.get('description')?.value,
+      publishedDate: this.bookForm.get('publishedDate')?.value,
+      editorial: this.bookForm.get('editorial')?.value,
+      rate: this.bookForm.get('rate')?.value,
+      categories: this.bookForm.get('categories')?.value,
     }
 
-    if(this.name !== null){
+    if (this._id !== null) {
       // Edit book
-      this._bookService.editBook(this.name, book).subscribe((data: any) => {
-        this.toastr.info('The book is updated!', 'Book Updated');
-        this.router.navigate(['/']);
-      }, (error: any) => {
-        console.log(error);
-        this.bookForm.reset();
-      })
-    }
-    else {
-      // Add book
+      this._bookService.editBook(this._id, book).subscribe(
+        (data) => {
+          this.toastr.info('El book ha estat editat amb exit!', 'Book Editat');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.log(error);
+          this.bookForm.reset();
+        }
+      );
+    } else {
+      // Add user
       console.log(book);
-      this._bookService.addBook(book).subscribe((data: any) => {
-        this.toastr.success('The book is added!', 'Book Added');
-        this.router.navigate(['/']);
-      }, (error: any) => {
-        console.log(error);
-        this.bookForm.reset();
-      })
+      this._bookService.addBook(book).subscribe(
+        (data) => {
+          this.toastr.success('El book ha estat creat amb exit!', 'Book Creat');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.log(error);
+          this.bookForm.reset();
+        }
+      );
     }
   }
 
   editBook() {
-    if(this.name !== null) {
-      this.title = 'Edit Book';
-      this._bookService.getBook(this.name).subscribe((data: { title: any; category: any; ISBN: any; releaseDate: any; publicationDate: any; format: any; quantity: any; sells: any; description: any; }) => {
+    if(this._id !== null) {
+      this.title = 'Edit book';
+      this._bookService.getBook(this._id).subscribe((data) => {
         this.bookForm.setValue({
           title: data.title,
-          category:data.category,
-          ISBN:data.ISBN,
-          releaseDate: data.releaseDate,
-          publicationDate: data.publicationDate,
-          format:data.format,
-          quantity:data.quantity,
-          sells: data.sells,
-          description:data.description,
-        })
-      })
+          ISBN: data.ISBN,
+          photoURL: data.photoURL,
+          description: data.description,
+          publishedDate: data.publishedDate,
+          editorial: data.editorial,
+          rate: data.rate,
+          categories: data.categories,
+        });
+      });
     }
   }
-
 }
-

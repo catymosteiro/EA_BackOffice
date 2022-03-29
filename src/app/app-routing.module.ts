@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'crear-event', component: CrearEventComponent },
   { path: 'editar-event/:name', component: CrearEventComponent },
   { path: 'crear-book', component: CrearBookComponent },
-  { path: 'editar-book/:name', component: CrearBookComponent },
+  { path: 'editar-book/:_id', component: CrearBookComponent },
   { path: 'chat-create', component: ChatCreateComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }, // In case of a wrong URL, the code redirects to the main path
+  { path: '**', redirectTo: '', pathMatch: 'full' }, // In case of a wrong URL the code redirects to the main path
 ];
 
 @NgModule({
