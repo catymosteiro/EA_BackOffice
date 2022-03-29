@@ -16,7 +16,7 @@ import { UserService } from 'src/app/service/user.service';
 export class CrearUserComponent implements OnInit {
   userForm: FormGroup;
   title = 'Crear User';
-  name: string | null;
+  id: string | null;
 
   constructor(
     private fb: FormBuilder,
@@ -26,14 +26,15 @@ export class CrearUserComponent implements OnInit {
     private aRouter: ActivatedRoute
   ) {
     this.userForm = this.fb.group({
-      id: ['', Validators.required],
+      username: ['', Validators.required],
       name: ['', Validators.required],
-      age: ['', Validators.required],
+      mail: ['', Validators.required],
       password: ['', Validators.required],
+      birthDate: ['', Validators.required],
     });
 
-    this.name = this.aRouter.snapshot.paramMap.get('name');
-    console.log(this.name);
+    this.id = this.aRouter.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
   ngOnInit(): void {
@@ -42,17 +43,21 @@ export class CrearUserComponent implements OnInit {
 
   addUser() {
     //todo convert all user to my user
+
+    console.log(typeof this.userForm.get('birthDate')?.value);
+
     //@ts-ignore
     const user: User = {
-      _id: this.userForm.get('id')?.value,
       name: this.userForm.get('name')?.value,
-      birthDate: this.userForm.get('age')?.value,
+      birthDate: this.userForm.get('birthDate')?.value,
       password: this.userForm.get('password')?.value,
+      mail: this.userForm.get('mail')?.value,
+      userName: this.userForm.get('username')?.value,
     };
 
-    if (this.name !== null) {
+    if (this.id !== null) {
       // Edit user
-      this._userService.editUser(this.name, user).subscribe(
+      this._userService.editUser(this.id, user).subscribe(
         (data) => {
           this.toastr.info('El user ha estat editat amb exit!', 'User Editat');
           this.router.navigate(['/']);
@@ -79,14 +84,17 @@ export class CrearUserComponent implements OnInit {
   }
 
   editUser() {
-    if (this.name !== null) {
+    if (this.id !== null) {
       this.title = 'Editar user';
-      this._userService.getUser(this.name).subscribe((data) => {
+      this._userService.getUser(this.id).subscribe((data) => {
+        console.log('Editar user data');
+        console.log(data);
         this.userForm.setValue({
-          _id: data._id,
           name: data.name,
+          username: data.userName,
           birthDate: data.birthDate,
           password: data.password,
+          mail: data.mail,
         });
       });
     }
