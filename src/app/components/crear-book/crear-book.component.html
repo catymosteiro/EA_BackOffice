@@ -14,22 +14,6 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" formControlName="author" 
-                                class="form-control form-control-lg" placeholder="author">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('author')?.hasError('required') && bookForm.get('author')?.touched">
-                                <span>The author is required</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" formControlName="category" 
-                                class="form-control form-control-lg" placeholder="category">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('category')?.hasError('required') && bookForm.get('category')?.touched">
-                                <span>The category is required</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
                             <input type="text" formControlName="ISBN" 
                                 class="form-control form-control-lg" placeholder="ISBN">
                             <div class="text-danger"
@@ -38,43 +22,11 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" formControlName="releaseDate" 
-                                class="form-control form-control-lg" placeholder="releaseDate">
+                            <input type="text" formControlName="photoURL" 
+                                class="form-control form-control-lg" placeholder="photoURL">
                             <div class="text-danger"
-                                *ngIf="bookForm.get('releaseDate')?.hasError('required') && bookForm.get('releaseDate')?.touched">
-                                <span>The releaseDate is required</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" formControlName="publicationDate" 
-                                class="form-control form-control-lg" placeholder="publicationDate">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('publicationDate')?.hasError('required') && bookForm.get('publicationDate')?.touched">
-                                <span>The publicationDate is required</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" formControlName="format" 
-                                class="form-control form-control-lg" placeholder="format">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('format')?.hasError('required') && bookForm.get('format')?.touched">
-                                <span>The format is required</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" formControlName="quantity" 
-                                class="form-control form-control-lg" placeholder="quantity">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('quantity')?.hasError('required') && bookForm.get('quantity')?.touched">
-                                <span>The quantity is required</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" formControlName="sells" 
-                                class="form-control form-control-lg" placeholder="sells">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('sells')?.hasError('required') && bookForm.get('sells')?.touched">
-                                <span>The sells is required</span>
+                                *ngIf="bookForm.get('photoURL')?.hasError('required') && bookForm.get('photoURL')?.touched">
+                                <span>The photoURL is required</span>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -83,6 +35,38 @@
                             <div class="text-danger"
                                 *ngIf="bookForm.get('description')?.hasError('required') && bookForm.get('description')?.touched">
                                 <span>The description is required</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="publishedDate" 
+                                class="form-control form-control-lg" placeholder="publishedDate">
+                            <div class="text-danger"
+                                *ngIf="bookForm.get('publishedDate')?.hasError('required') && bookForm.get('publishedDate')?.touched">
+                                <span>The publishedDate is required</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="editorial" 
+                                class="form-control form-control-lg" placeholder="editorial">
+                            <div class="text-danger"
+                                *ngIf="bookForm.get('editorial')?.hasError('required') && bookForm.get('editorial')?.touched">
+                                <span>The editorial is required</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="rate" 
+                                class="form-control form-control-lg" placeholder="rate">
+                            <div class="text-danger"
+                                *ngIf="bookForm.get('rate')?.hasError('required') && bookForm.get('rate')?.touched">
+                                <span>The rate is required</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="categories" 
+                                class="form-control form-control-lg" placeholder="categories">
+                            <div class="text-danger"
+                                *ngIf="bookForm.get('categories')?.hasError('required') && bookForm.get('categories')?.touched">
+                                <span>The categories is required</span>
                             </div>
                         </div>
                         <div class="mb-3">

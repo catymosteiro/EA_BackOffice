@@ -53,7 +53,7 @@ export class CrearEventComponent implements OnInit {
     }
 
     if(this.name !== null){
-      // Edit user
+      // Edit event
       this._eventService.editEvent(this.name, event).subscribe(data => {
         this.toastr.info('Event ha estat editat amb exit!', 'Event Editat');
         this.router.navigate(['/']);
@@ -63,7 +63,7 @@ export class CrearEventComponent implements OnInit {
       })
     }
     else {
-      // Add user
+      // Add event
       console.log(event);
       this._eventService.addEvent(event).subscribe(data => {
         this.toastr.success('Event ha estat creat amb exit!', 'Event Creat');

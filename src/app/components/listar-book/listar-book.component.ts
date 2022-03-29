@@ -20,7 +20,7 @@ export class ListarBookComponent implements OnInit {
   }
 
   getBooks() {
-    this._bookService.getBooks().subscribe((data: any) => {
+    this._bookService.getBooks().subscribe((data) => {
       console.log(data);
       this.listBooks = data;
     }, (error: any) => {
@@ -28,8 +28,8 @@ export class ListarBookComponent implements OnInit {
     })
   }
 
-  deleteBook(ISBN: string) {
-    this._bookService.deleteBook(ISBN).subscribe((data: any) => {
+  deleteBook(_id: any) {
+    this._bookService.deleteBook(_id).subscribe((data: any) => {
       this.toastr.error('The book has been delated', 'Book delated');
       this.getBooks();
     }, (error: any) => {
