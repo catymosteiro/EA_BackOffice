@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Toast, ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-listar-users',
@@ -10,6 +11,20 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ListarUsersComponent implements OnInit {
   listUsers: User[] = [];
+  dataSource = new MatTableDataSource(this.listUsers);
+  displayedColumns: string[] = [
+    '_id',
+    'username',
+    'email',
+    'full name',
+    'disabled',
+    'categories',
+    'books',
+    'events',
+    'clubs',
+    'chats',
+    'actions',
+  ];
 
   constructor(
     private _userService: UserService,
@@ -25,6 +40,7 @@ export class ListarUsersComponent implements OnInit {
       (data) => {
         console.log(data);
         this.listUsers = data;
+        this.dataSource = new MatTableDataSource(this.listUsers);
       },
       (error) => {
         console.log(error);
@@ -33,8 +49,8 @@ export class ListarUsersComponent implements OnInit {
   }
 
   //todo passar a id
-  deleteUser(name: string) {
-    this._userService.deleteUser(name).subscribe(
+  deleteUser(id: string) {
+    this._userService.deleteUser(id).subscribe(
       (data: Object) => {
         this.toastr.error(
           'El user ha estat eliminat amb exit',
@@ -46,5 +62,10 @@ export class ListarUsersComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

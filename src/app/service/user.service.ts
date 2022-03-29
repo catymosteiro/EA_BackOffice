@@ -7,12 +7,12 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
-  url = 'http://localhost:3000';
+  url = 'http://localhost:3000/user';
 
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url + '/user');
+    return this.http.get<User[]>(this.url + '/');
   }
 
   getUser(id: string): Observable<User> {

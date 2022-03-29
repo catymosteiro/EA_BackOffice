@@ -11,24 +11,26 @@ import { BookService } from 'src/app/service/book.service';
 @Component({
   selector: 'app-crear-book',
   templateUrl: './crear-book.component.html',
-  styleUrls: ['./crear-book.component.css']
+  styleUrls: ['./crear-book.component.css'],
 })
 export class CrearBookComponent implements OnInit {
   bookForm: FormGroup;
-  title = "Add Book";
+  title = 'Add Book';
   _id: string | null;
 
-  constructor(private fb: FormBuilder, 
-              private router: Router, 
-              private toastr: ToastrService,
-              private _bookService: BookService,
-              private aRouter: ActivatedRoute) { 
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService,
+    private _bookService: BookService,
+    private aRouter: ActivatedRoute
+  ) {
     this.bookForm = this.fb.group({
       title: [''],
       ISBN: [''],
       photoURL: [''],
       description: [''],
-      releaseDate: [''],
+      publishedDate: [''],
       editorial: [''],
       rate: [''],
       categories: [''],
@@ -52,7 +54,7 @@ export class CrearBookComponent implements OnInit {
       editorial: this.bookForm.get('editorial')?.value,
       rate: this.bookForm.get('rate')?.value,
       categories: this.bookForm.get('categories')?.value,
-    }
+    };
 
     if (this._id !== null) {
       // Edit book
@@ -83,9 +85,10 @@ export class CrearBookComponent implements OnInit {
   }
 
   editBook() {
-    if(this._id !== null) {
+    if (this._id !== null) {
       this.title = 'Edit book';
       this._bookService.getBook(this._id).subscribe((data) => {
+        console.log(data);
         this.bookForm.setValue({
           title: data.title,
           ISBN: data.ISBN,

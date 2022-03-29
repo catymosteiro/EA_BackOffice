@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Toast, ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 import { Chat } from 'src/app/models/chat';
 import { User } from 'src/app/models/user';
 import { ChatService } from 'src/app/service/chat.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -12,20 +14,36 @@ import { ChatService } from 'src/app/service/chat.service';
 export class ChatListComponent implements OnInit {
   listChats: Chat[] = [];
 
+  id: string | null = null;
+
   constructor(
     private _chatService: ChatService,
-    private toastr: ToastrService
-  ) {}
+    private _userService: UserService,
+    private toastr: ToastrService,
+    private aRouter: ActivatedRoute
+  ) {
+    this.id = this.aRouter.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
     this.getChats();
   }
 
   getChats() {
-    this._chatService.getChats().subscribe(
+    if (!this.id) {
+      this._chatService.getChats().subscribe(
+        (data) => {
+          console.log({ Chats: data });
+          this.listChats = data;
+        },
+        (error) => console.log(error)
+      );
+      return;
+    }
+
+    this._userService.getUser(this.id).subscribe(
       (data) => {
-        console.log({ Chats: data });
-        this.listChats = data;
+        this.listChats = data.chats;
       },
       (error) => console.log(error)
     );
@@ -33,7 +51,7 @@ export class ChatListComponent implements OnInit {
 
   deleteChat(chatId: string) {
     this._chatService.deleteChat(chatId).subscribe((data: any) => {
-      this.toastr.success(data.message, 'Deleted Chat');
+      this.toastr.success('Deleted Chat');
       this.getChats();
     });
   }
