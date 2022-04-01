@@ -1,44 +1,45 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-lg-12 ">
-            <div class="card">
-                <div class="card-body text-center">
-                    <span class="title">BOOKS LIST</span>
-                    <!-- <button class="btn btn-success float-end" routerLink="/crear-event">NOU EVENT</button> -->
-                    <table *ngIf="listBooks.length > 0" class="table table-striped mt-3">
-                     <thead>
-                       <tr>
-                         <th scope="col">title</th>
-                         <th scope="col">ISBN</th>
-                         <th scope="col">photoURL</th>
-                         <th scope="col">description</th>
-                         <th scope="col">publishedDate</th>
-                         <th scope="col">editorial</th>
-                         <th scope="col">rate</th>
-                         <th scope="col">categories</th>
-                         <th scope="col"></th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       <tr *ngFor="let event of listBooks">
-                         <td>{{ event.title }}</td>
-                         <td>{{ event.ISBN | slice:0:10}}</td>
-                         <td>{{ event.photoURL }}</td>
-                         <td>{{ event.description }}</td>
-                         <td>{{ event.publishedDate }}</td>
-                         <td>{{ event.editorial }}</td>
-                         <td>{{ event.rate }}</td>
-                         <td>{{ event.categories }}</td>
-                         <td>
-                             <i [routerLink]="['/editar-book', event._id]" class="fa-solid fa-pen-to-square text-primary"></i>
-                             <i (click)="deleteBook(event._id)" class="fa-solid fa-trash text-danger"></i>
-                         </td>
-                       </tr>
-                     </tbody>
-                   </table>
-                   <h5 style="text-align: start; margin-top: 10px;" *ngIf="listBooks.length == 0">No hi ha books a la base de dades</h5>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12 ">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="title">BOOKS LIST</span>
+          <button class="btn btn-success float-end" routerLink="/crear-book">NEW BOOK</button>
+          <table *ngIf="listBooks.length > 0" class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">title</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">photoURL</th>
+                <th scope="col">description</th>
+                <th scope="col">publishedDate</th>
+                <th scope="col">editorial</th>
+                <th scope="col">rate</th>
+                <th scope="col">categories</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of listBooks">
+                <td>{{ event.title }}</td>
+                <td>{{ event.ISBN | slice:0:10}}</td>
+                <td>{{ event.photoURL }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.publishedDate }}</td>
+                <td>{{ event.editorial }}</td>
+                <td>{{ event.rate }}</td>
+                <td>{{ event.categories }}</td>
+                <td>
+                  <i [routerLink]="['/editar-book', event._id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                  <i (click)="deleteBook(event._id)" class="fa-solid fa-trash text-danger"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 style="text-align: start; margin-top: 10px;" *ngIf="listBooks.length == 0">No hi ha books a la base de
+            dades</h5>
         </div>
+      </div>
     </div>
- </div>
+  </div>
+</div>

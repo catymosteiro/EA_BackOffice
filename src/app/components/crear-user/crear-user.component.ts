@@ -73,7 +73,7 @@ export class CrearUserComponent implements OnInit {
       this._userService.addUser(user).subscribe(
         (data) => {
           this.toastr.success('El user ha estat creat amb exit!', 'User Creat');
-          this.router.navigate(['/']);
+          this.router.navigate(['/listar-users/']);
         },
         (error) => {
           console.log(error);

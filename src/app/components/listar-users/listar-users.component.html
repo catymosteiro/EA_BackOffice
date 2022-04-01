@@ -4,16 +4,12 @@
       <div class="card-body">
         <div class="text-center">
           <span class="title">LLISTAT DE USERS</span>
+          <button class="btn btn-success float-end" routerLink="/crear-user">NEW USER</button>
           <div>
             <!-- <button class="btn btn-success float-end" routerLink="/crear-user">NOU USER</button> -->
             <mat-form-field appearance="standard">
               <mat-label>Search</mat-label>
-              <input
-                matInput
-                (keyup)="applyFilter($event)"
-                placeholder="Ex. Teresita"
-                #input
-              />
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Teresita" #input />
             </mat-form-field>
           </div>
         </div>
@@ -85,25 +81,16 @@
             <ng-container matColumnDef="chats">
               <th mat-header-cell *matHeaderCellDef>chats</th>
               <td mat-cell *matCellDef="let element">
-                <i
-                  [routerLink]="['/chat-list', element._id]"
-                  class="fa-solid text-primary"
-                  >{{ element.chats.length }}</i
-                >
+                <i [routerLink]="['/chat-list', element._id]" class="fa-solid text-primary">{{ element.chats.length
+                  }}</i>
               </td>
             </ng-container>
 
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let element">
-                <i
-                  [routerLink]="['/editar-user', element._id]"
-                  class="fa-solid fa-pen-to-square text-primary"
-                ></i>
-                <i
-                  (click)="deleteUser(element._id)"
-                  class="fa-solid fa-trash text-danger"
-                ></i>
+                <i [routerLink]="['/editar-user', element._id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                <i (click)="deleteUser(element._id)" class="fa-solid fa-trash text-danger"></i>
               </td>
             </ng-container>
 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Seminar7-Client": {
+    "BackOffice": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/seminar7-client",
+            "outputPath": "dist/BackOffice",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Seminar7-Client:build:production"
+              "browserTarget": "BackOffice:build:production"
             },
             "development": {
-              "browserTarget": "Seminar7-Client:build:development"
+              "browserTarget": "BackOffice:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Seminar7-Client:build"
+            "browserTarget": "BackOffice:build"
           }
         },
         "test": {
@@ -106,5 +106,5 @@
       }
     }
   },
-  "defaultProject": "Seminar7-Client"
+  "defaultProject": "BackOffice"
 }

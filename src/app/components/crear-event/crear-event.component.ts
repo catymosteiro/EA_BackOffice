@@ -18,11 +18,11 @@ export class CrearEventComponent implements OnInit {
   title = "Crear Event";
   name: string | null;
 
-  constructor(private fb: FormBuilder, 
-              private router: Router, 
-              private toastr: ToastrService,
-              private _eventService: EventService,
-              private aRouter: ActivatedRoute) { 
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService,
+    private _eventService: EventService,
+    private aRouter: ActivatedRoute) {
     this.eventForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -32,7 +32,7 @@ export class CrearEventComponent implements OnInit {
       category: ['', Validators.required],
       position: [''],
     });
-    
+
     this.name = this.aRouter.snapshot.paramMap.get('name');
     console.log(this.name);
   }
@@ -43,16 +43,16 @@ export class CrearEventComponent implements OnInit {
 
   addEvent() {
     const event: Event = {
-      name:this.eventForm.get('name')?.value,
-      description:this.eventForm.get('description')?.value,
-      admin:this.eventForm.get('admin')?.value,
-      creationDate:this.eventForm.get('creationDate')?.value,
-      usersList:this.eventForm.get('userList')?.value,
+      name: this.eventForm.get('name')?.value,
+      description: this.eventForm.get('description')?.value,
+      admin: this.eventForm.get('admin')?.value,
+      creationDate: this.eventForm.get('creationDate')?.value,
+      usersList: this.eventForm.get('userList')?.value,
       category: this.eventForm.get('category')?.value,
-      position:this.eventForm.get('position')?.value,
+      position: this.eventForm.get('position')?.value,
     }
 
-    if(this.name !== null){
+    if (this.name !== null) {
       // Edit event
       this._eventService.editEvent(this.name, event).subscribe(data => {
         this.toastr.info('Event ha estat editat amb exit!', 'Event Editat');
@@ -67,7 +67,7 @@ export class CrearEventComponent implements OnInit {
       console.log(event);
       this._eventService.addEvent(event).subscribe(data => {
         this.toastr.success('Event ha estat creat amb exit!', 'Event Creat');
-        this.router.navigate(['/']);
+        this.router.navigate(['/listar-events']);
       }, error => {
         console.log(error);
         this.eventForm.reset();
@@ -76,7 +76,7 @@ export class CrearEventComponent implements OnInit {
   }
 
   editEvent() {
-    if(this.name !== null) {
+    if (this.name !== null) {
       this.title = 'Editar event';
       this._eventService.getEvent(this.name).subscribe(data => {
         this.eventForm.setValue({
