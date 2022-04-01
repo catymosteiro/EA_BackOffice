@@ -29,7 +29,7 @@ export class ListarUsersComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getUsers();

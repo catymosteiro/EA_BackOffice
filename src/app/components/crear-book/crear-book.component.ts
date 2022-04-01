@@ -74,7 +74,7 @@ export class CrearBookComponent implements OnInit {
       this._bookService.addBook(book).subscribe(
         (data) => {
           this.toastr.success('El book ha estat creat amb exit!', 'Book Creat');
-          this.router.navigate(['/']);
+          this.router.navigate(['/listar-books']);
         },
         (error) => {
           console.log(error);
