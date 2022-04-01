@@ -9,22 +9,37 @@ import { ListarUsersComponent } from './components/listar-users/listar-users.com
 import { ListarBookComponent } from './components/listar-book/listar-book.component';
 import { ListarEventsComponent } from './components/listar-events/listar-events.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 // Routes
 const routes: Routes = [
-  { path: '', component: DashBoardComponent },
-  { path: 'listar-users', component: ListarUsersComponent },
-  { path: 'listar-books', component: ListarBookComponent },
-  { path: 'listar-events', component: ListarEventsComponent },
-  { path: 'crear-user', component: CrearUserComponent },
-  { path: 'editar-user/:id', component: CrearUserComponent },
-  { path: 'crear-event', component: CrearEventComponent },
-  { path: 'editar-event/:name', component: CrearEventComponent },
-  { path: 'crear-book', component: CrearBookComponent },
-  { path: 'editar-book/:_id', component: CrearBookComponent },
-  { path: 'chat-create', component: ChatCreateComponent },
-  { path: 'chat-list/:id', component: ChatListComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }, // In case of a wrong URL, the code redirects to the main path
+  // Login & Register
+  { path: '', component: LoginComponent },
+
+  // DashBoard
+  { path: 'home', component: DashBoardComponent, canActivate: [AuthGuard] },
+
+  // List of objects
+  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
+  { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
+  { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
+  { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
+
+  // Create an object
+  { path: 'crear-user', component: CrearUserComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
+  { path: 'crear-event', component: CrearEventComponent, canActivate: [AuthGuard] },
+  { path: 'crear-book', component: CrearBookComponent, canActivate: [AuthGuard] },
+  { path: 'chat-create', component: ChatCreateComponent, canActivate: [AuthGuard] },
+
+  // Edit objects
+  { path: 'editar-user/:id', component: CrearUserComponent, canActivate: [AuthGuard] },
+  { path: 'editar-event/:name', component: CrearEventComponent, canActivate: [AuthGuard] },
+  { path: 'editar-book/:_id', component: CrearBookComponent, canActivate: [AuthGuard] },
+
+  // In case of a wrong URL, the code redirects to the main path
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
