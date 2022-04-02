@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/service/book.service';
 
+
 @Component({
   selector: 'app-crear-book',
   templateUrl: './crear-book.component.html',
@@ -15,6 +16,7 @@ import { BookService } from 'src/app/service/book.service';
 })
 export class CrearBookComponent implements OnInit {
   bookForm: FormGroup;
+  bookList: Book[] = [];
   title = 'Add Book';
   _id: string | null;
 

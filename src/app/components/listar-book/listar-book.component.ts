@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Toast, ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/service/book.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-listar-book',
@@ -9,31 +10,50 @@ import { BookService } from 'src/app/service/book.service';
   styleUrls: ['./listar-book.component.css']
 })
 export class ListarBookComponent implements OnInit {
-
   listBooks: Book[] = [];
+  dataSource = new MatTableDataSource(this.listBooks);
+  displayedColumns: string[] = [
+    '_id',
+    'title',
+    'ISBN',
+    'photoURL',
+    'description',
+    'publishedDate',
+    'editorial',
+    'rate',
+    'categories',
+    'actions',
+  ];
 
-  constructor(private _bookService: BookService,
-        private toastr: ToastrService) { }
+  constructor(
+    private _bookService: BookService,
+    private toastr: ToastrService) { }
   
   ngOnInit(): void {
     this.getBooks();
   }
 
   getBooks() {
-    this._bookService.getBooks().subscribe((data) => {
+    this._bookService.getBooks().subscribe(
+      (data) => {
       console.log(data);
       this.listBooks = data;
+      this.dataSource = new MatTableDataSource(this.listBooks);
     }, (error: any) => {
       console.log(error);
     })
   }
 
   deleteBook(_id: any) {
-    this._bookService.deleteBook(_id).subscribe((data: any) => {
-      this.toastr.error('The book has been delated', 'Book delated');
+    this._bookService.deleteBook(_id).subscribe((data: Object) => {
+      this.toastr.error('The book has been deleted', 'Book deleted');
       this.getBooks();
     }, (error: any) => {
       console.log(error);
-    })
+    });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
