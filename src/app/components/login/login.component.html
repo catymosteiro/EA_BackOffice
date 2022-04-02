@@ -2,7 +2,12 @@
     <h1>Book Hub</h1>
     <div class="login-card">
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-            <mat-tab label="LOGIN">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div style="color: white; font-size: 30px;">
+                        <b>LOGIN</b>
+                    </div>
+                </ng-template>
                 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
                     <mat-card class="box">
@@ -10,38 +15,48 @@
                             <mat-card-title>Log in</mat-card-title>
                         </mat-card-header>
                         <form class="mt-3" [formGroup]="signInForm" (ngSubmit)="login()">
-                            <div class="mb-3">
-                                <input type="text" formControlName="username" class="form-control form-control-lg"
-                                    placeholder="Username" />
-                                <div class="text-danger" *ngIf="
+                            <mat-card-content>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Username">
+                                </mat-form-field>
+                                <div class="mb-3">
+                                    <input type="text" formControlName="username" class="form-control form-control-lg"
+                                        placeholder="Username" />
+                                    <div class="text-danger" *ngIf="
                                 signInForm.get('username')?.hasError('required') &&
                                 signInForm.get('username')?.touched
                                 ">
-                                    <span>El username del user és obligatori</span>
+                                        <span>El username del user és obligatori</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" formControlName="password" class="form-control form-control-lg"
-                                    placeholder="Password" />
-                                <div class="text-danger" *ngIf="
+                                <div class="mb-3">
+                                    <input type="password" formControlName="password"
+                                        class="form-control form-control-lg" placeholder="Password" />
+                                    <div class="text-danger" *ngIf="
                                 signInForm.get('password')?.hasError('required') &&
                                 signInForm.get('password')?.touched
                                 ">
-                                    <span>El password del user és obligatori</span>
+                                        <span>El password del user és obligatori</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" [disabled]="signInForm.invalid"
-                                    class="btn btn-success btn-lg float-end">
-                                    ACCEPTAR
-                                </button>
-                            </div>
+                                <div class="mb-3">
+                                    <button type="submit" [disabled]="signInForm.invalid"
+                                        class="btn btn-success btn-lg float-end">
+                                        ACCEPTAR
+                                    </button>
+                                </div>
+                            </mat-card-content>
                         </form>
                     </mat-card>
 
                 </div>
             </mat-tab>
-            <mat-tab label="REGISTER">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div style="color: white;font-size: 30px;">
+                        <b>REGISTER</b>
+                    </div>
+                </ng-template>
                 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
                     <mat-card class="box">
                         <mat-card-header>

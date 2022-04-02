@@ -4,6 +4,7 @@ h1 {
   font-size: 150px;
   color:#fff;
 }
+
 h2 {
   font-style: italic;
   font-weight: bold;
@@ -23,6 +24,7 @@ h2 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .box {
   position: relative;
   top: 0;
