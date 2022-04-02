@@ -17,6 +17,7 @@ export class ListarBookComponent implements OnInit {
     'title',
     'ISBN',
     'photoURL',
+    'description',
     'publishedDate',
     'editorial',
     'rate',
