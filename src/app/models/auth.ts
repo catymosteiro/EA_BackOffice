@@ -1,9 +1,9 @@
-export interface UserSingin {
+export interface UserSignin {
     userName: string;
     password: string;
 }
 
-export interface UserSingup {
+export interface UserSignup {
     userName: string;
     name: string;
     mail: string;
