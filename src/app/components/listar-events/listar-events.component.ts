@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Toast, ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 import { Events } from 'src/app/models/event';
 import { EventService } from 'src/app/service/event.service';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -30,6 +30,8 @@ export class ListarEventsComponent implements OnInit {
   constructor(private _eventService: EventService,
         private toastr: ToastrService) { }
   
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
   ngOnInit(): void {
     this.getEvents();
   }
