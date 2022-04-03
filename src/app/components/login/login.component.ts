@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.signInForm.get('username')?.setValue(localStorage.getItem('userName'));
   }
 
   login() {
@@ -75,7 +76,6 @@ export class LoginComponent implements OnInit {
       birthDate: this.formGroup2.get('birthDate')?.value,
       password: this.formGroup3.get('password')?.value,
     };
-    console.log(user);
     this._authService.signup(user).subscribe(
       (data: any) => {
         this.toastr.info('Dale wey!', 'Signin');
@@ -89,7 +89,6 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 
 
 }
