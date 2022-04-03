@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export class Event {
+export class Events {
   _id?: string;
   name: string;
   description: string;

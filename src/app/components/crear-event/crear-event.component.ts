@@ -5,7 +5,7 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { Event } from 'src/app/models/event';
+import { Events } from 'src/app/models/event';
 import { EventService } from 'src/app/service/event.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class CrearEventComponent implements OnInit {
   }
 
   addEvent() {
-    const event: Event = {
+    const event: Events = {
       name: this.eventForm.get('name')?.value,
       description: this.eventForm.get('description')?.value,
       admin: this.eventForm.get('admin')?.value,
