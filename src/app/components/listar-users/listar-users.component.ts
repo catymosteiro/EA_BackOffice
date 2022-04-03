@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Toast, ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listar-users',
@@ -31,6 +32,8 @@ export class ListarUsersComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
   ngOnInit(): void {
     this.getUsers();
   }
@@ -41,6 +44,7 @@ export class ListarUsersComponent implements OnInit {
         console.log(data);
         this.listUsers = data;
         this.dataSource = new MatTableDataSource(this.listUsers);
+        this.dataSource.paginator = this.paginator;
       },
       (error) => {
         console.log(error);

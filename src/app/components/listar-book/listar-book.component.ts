@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Toast, ToastrComponentlessModule, ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/service/book.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listar-book',
@@ -28,7 +29,9 @@ export class ListarBookComponent implements OnInit {
   constructor(
     private _bookService: BookService,
     private toastr: ToastrService) { }
-  
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
   ngOnInit(): void {
     this.getBooks();
   }
@@ -36,12 +39,12 @@ export class ListarBookComponent implements OnInit {
   getBooks() {
     this._bookService.getBooks().subscribe(
       (data) => {
-      console.log(data);
-      this.listBooks = data;
-      this.dataSource = new MatTableDataSource(this.listBooks);
-    }, (error: any) => {
-      console.log(error);
-    })
+        console.log(data);
+        this.listBooks = data;
+        this.dataSource = new MatTableDataSource(this.listBooks);
+      }, (error: any) => {
+        console.log(error);
+      })
   }
 
   deleteBook(_id: any) {

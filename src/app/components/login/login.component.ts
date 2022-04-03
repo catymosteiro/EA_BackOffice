@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserSingin, UserSingup } from 'src/app/models/auth';
+import { UserSingin } from 'src/app/models/auth';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -17,6 +18,10 @@ import { AuthService } from 'src/app/service/auth.service';
 
 export class LoginComponent implements OnInit {
   signInForm: FormGroup;
+  signUpForm: FormGroup;
+  formGroup1: FormGroup;
+  formGroup2: FormGroup;
+  formGroup3: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +33,25 @@ export class LoginComponent implements OnInit {
     this.signInForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+    });
+    this.signUpForm = this.fb.group({
+      username: ['', Validators.required],
+      name: ['', Validators.required],
+      mail: ['', Validators.required],
+      password: ['', Validators.required],
+      birthDate: ['', Validators.required],
+    });
+    this.formGroup1 = this.fb.group({
+      username: ['', Validators.required],
+      mail: ['', Validators.required]
+    });
+    this.formGroup2 = this.fb.group({
+      name: ['', Validators.required],
+      birthDate: ['', Validators.required]
+    });
+    this.formGroup3 = this.fb.group({
+      password: ['', Validators.required, Validators.min(8)],
+      confirmPsw: ['', Validators.required]
     });
   }
 
