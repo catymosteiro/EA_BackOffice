@@ -1,18 +1,17 @@
 <div class="container mt-5">
+  <span class="title" style="font-style: italic; color: rgb(19, 19, 94);">LLISTAT D'EVENTS</span>
   <div class="row">
     <div class="card">
       <div class="card-body">
-        <div class="text-center">
-        <span class="title">LLISTAT D'EVENTS</span>
-        <button class="btn btn-success float-end" routerLink="/crear-event">NEW EVENT</button>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'> <!--.css referencia para el icono0-->
+        <button class="btn btn-success float-end" style="width: auto;" routerLink="/crear-event"><i class='fa fa-calendar-plus-o'></i>
+        </button> <!--<i class='fa-solid fa-calendar'></i> Para el icono de un calendario normal-->
         <div>
           <mat-form-field appearance="standard">
-            <mat-label>Search</mat-label>
+            <mat-label><i class="fa-solid fa-magnifying-glass"></i>Search</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Quedada Carlitos" #input />
-          </mat-form-field>
-        </div>
-      </div>
-      <div>
+          </mat-form-field>        
+      </div>      
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
           <ng-container matColumnDef="_id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -80,7 +79,9 @@
             </td>
           </tr>
         </table>
-      </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons
+        style="background-color: transparent; color:black">
+        </mat-paginator>     
         <h5 style="text-align: start; margin-top: 10px;" *ngIf="listEvents.length == 0">No hi ha events a la base de
           dades</h5>
       </div>
