@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
 
 // Components
 import { AppComponent } from './app.component';
@@ -65,6 +66,7 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     MatPaginatorModule,
     MatTabsModule,
     FormsModule,
+    MatStepperModule,
   ],
   providers: [
     // JWT
