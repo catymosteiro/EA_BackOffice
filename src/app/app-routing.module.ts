@@ -8,10 +8,12 @@ import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { ListarUsersComponent } from './components/listar-users/listar-users.component';
 import { ListarBookComponent } from './components/listar-book/listar-book.component';
 import { ListarEventsComponent } from './components/listar-events/listar-events.component';
+import { ListarClubsComponent } from './components/listar-clubs/listar-clubs.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { InfoClubComponent } from './components/info-club/info-club.component';
 
 // Routes
 const routes: Routes = [
@@ -25,6 +27,9 @@ const routes: Routes = [
   { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
   { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
+  { path: 'listar-clubs', component: ListarClubsComponent },
+
+  { path: 'info-club/:id', component: InfoClubComponent },
   { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
 
   // Create an object

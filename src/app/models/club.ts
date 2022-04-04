@@ -1,11 +1,12 @@
+import Dates from './dates';
 import { User } from './user';
-
-export interface Club {
+import { Chat } from './chat';
+export interface Club extends Dates {
   _id?: string;
   name: string;
   description: string;
   admin: User;
-  users: User[];
-  createdAt: Number;
-  category: string; //TODO-JA: change category for an object
+  chat: Chat;
+  usersList: User[];
+  category: string;
 }
