@@ -1,6 +1,7 @@
+import Dates from './dates';
 import { User } from './user';
 
-export class Events {
+export interface Events extends Dates {
   _id?: string;
   name: string;
   description: string;
@@ -14,22 +15,4 @@ export class Events {
       longitude: number;
     };
   };
-
-  constructor(
-    name: string,
-    description: string,
-    admin: User,
-    creationDate: Date,
-    UsersList: User[],
-    category: string,
-    position: { type: { latitude: number; longitude: number } }
-  ) {
-    this.name = name;
-    this.description = description;
-    this.admin = admin;
-    this.creationDate = creationDate;
-    this.usersList = UsersList;
-    this.category = category;
-    this.position = position;
-  }
 }
