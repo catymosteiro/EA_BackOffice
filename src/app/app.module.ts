@@ -39,6 +39,7 @@ import { ListarClubsComponent } from './components/listar-clubs/listar-clubs.com
 import { InfoClubComponent } from './components/info-club/info-club.component';
 import { CrearClubComponent } from './components/crear-club/crear-club.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { CrearClubComponent } from './components/crear-club/crear-club.component
     ListarClubsComponent,
     InfoClubComponent,
     CrearClubComponent,
+
   ],
   imports: [
     BrowserModule,

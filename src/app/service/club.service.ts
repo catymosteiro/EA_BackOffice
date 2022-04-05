@@ -20,6 +20,7 @@ export class ClubService {
   }
 
   addClub(club: NewClub): Observable<Object> {
+
     return this.http.post<Object>(this.url, club);
   }
 
