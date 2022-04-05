@@ -5,43 +5,38 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { Chat, NewChatBody } from 'src/app/models/chat';
 import { User } from 'src/app/models/user';
-import { ChatService } from 'src/app/service/chat.service';
 import { UserService } from 'src/app/service/user.service';
+import { ClubService } from '../../service/club.service';
+import { NewClub } from '../../models/club';
 
 @Component({
-  selector: 'app-chat-create',
-  templateUrl: './chat-create.component.html',
-  styleUrls: ['./chat-create.component.css'],
+  selector: 'app-crear-club',
+  templateUrl: './crear-club.component.html',
+  styleUrls: ['./crear-club.component.css']
 })
-export class ChatCreateComponent implements OnInit {
-  chatForm: FormGroup;
-  title = 'Crear Chat';
-  id: string | null;
+export class CrearClubComponent implements OnInit {
+  clubForm: FormGroup;
   users: User[] = [];
   checkedUsers: User[] = [];
 
-  constructor(
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private _chatService: ChatService,
+    private _clubService: ClubService,
     private _userService: UserService,
     private aRouter: ActivatedRoute
   ) {
-    this.chatForm = this.fb.group({
+    this.clubForm = this.fb.group({
       name: ['', Validators.required],
+      description: ['', Validators.required],
+      admin: ['', Validators.required],
+      category: ['', Validators.required],
     });
 
-    this.id = this.aRouter.snapshot.paramMap.get('id');
-    console.log(this.id);
   }
 
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-
   ngOnInit(): void {
-    this.editChat();
     this._userService.getUsers().subscribe(
       (userlist) => {
         console.log(userlist);
@@ -57,19 +52,19 @@ export class ChatCreateComponent implements OnInit {
     );
   }
 
-  addChat() {
-    //Add Chat
-    const chat: NewChatBody = {
-      name: this.chatForm.get('name')?.value,
-      userIds: this.checkedUsers.map<string>((item) => item._id!),
+  addClub() {
+    const club: NewClub = {
+      clubName: this.clubForm.get('name')?.value,
+      description: this.clubForm.get('description')?.value,
+      idAdmin: this.clubForm.get('admin')?.value,
+      category: this.clubForm.get('category')?.value,
     };
 
-    console.log(chat);
-    this._chatService.newChat(chat).subscribe(
+    this._clubService.addClub(club).subscribe(
       (data) => {
-        console.log(data);
-        this.toastr.success('El chat ha estat creat amb exit!', 'Chat Creat');
-        this.router.navigate(['/chat-list']);
+        this.toastr.success('El Club ha estat creat amb exit!', 'Club Creat');
+        this.checkedUsers.map<string>((item) => item._id!),//Subscribe users
+          this.router.navigate(['/listar-clubs']);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -80,10 +75,7 @@ export class ChatCreateComponent implements OnInit {
       }
     );
   }
-
   checkBoxChange(event: any, user: User) {
-    console.log(event);
-    console.log(user);
     if (event.target.checked) {
       if (this.checkedUsers.includes(user)) return;
 
@@ -96,15 +88,5 @@ export class ChatCreateComponent implements OnInit {
     }
     console.log(this.checkedUsers);
   }
-  editChat() {
-    if (this.id !== null) {
-      this._chatService.getChat(this.id).subscribe((data) => {
-        this.title = `Edit ${data._id} Chat`;
-        this.chatForm.setValue({
-          name: data.name,
-        });
-        this.checkedUsers = data.users;
-      });
-    }
-  }
+
 }

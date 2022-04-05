@@ -10,3 +10,10 @@ export interface Club extends Dates {
   usersList: User[];
   category: string;
 }
+
+export interface NewClub {
+  clubName: string;
+  description: string;
+  idAdmin: string;
+  category: string;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Club } from '../models/club';
+import { Club, NewClub } from '../models/club';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class ClubService {
     return this.http.get<Club>(this.url + id);
   }
 
-  addClub(club: Club): Observable<Object> {
+  addClub(club: NewClub): Observable<Object> {
     return this.http.post<Object>(this.url, club);
   }
 
