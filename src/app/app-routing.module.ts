@@ -16,7 +16,6 @@ import { RoleGuard } from './guards/role.guard';
 import { InfoClubComponent } from './components/info-club/info-club.component';
 import { CrearClubComponent } from './components/crear-club/crear-club.component';
 
-
 // Routes
 const routes: Routes = [
   // Login & Register
@@ -31,6 +30,7 @@ const routes: Routes = [
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
 
+  { path: 'subscribe-club/:id', component: CrearClubComponent },
   { path: 'info-club/:id', component: InfoClubComponent },
   { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
 

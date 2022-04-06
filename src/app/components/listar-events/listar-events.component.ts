@@ -28,8 +28,8 @@ export class ListarEventsComponent implements OnInit {
   ];
 
   constructor(private _eventService: EventService,
-        private toastr: ToastrService) { }
-  
+    private toastr: ToastrService) { }
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   ngOnInit(): void {
@@ -41,6 +41,7 @@ export class ListarEventsComponent implements OnInit {
       console.log(data);
       this.listEvents = data;
       this.dataSource = new MatTableDataSource(this.listEvents);
+      this.dataSource.paginator = this.paginator;
     }, error => {
       console.log(error);
     })

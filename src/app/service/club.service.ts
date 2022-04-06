@@ -19,9 +19,8 @@ export class ClubService {
     return this.http.get<Club>(this.url + id);
   }
 
-  addClub(club: NewClub): Observable<Object> {
-
-    return this.http.post<Object>(this.url, club);
+  addClub(club: NewClub): Observable<Club> {
+    return this.http.post<Club>(this.url, club);
   }
 
   editClub(id: string, club: Club): Observable<Object> {
