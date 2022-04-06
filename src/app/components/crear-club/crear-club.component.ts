@@ -11,6 +11,7 @@ import { ClubService } from '../../service/club.service';
 import { NewClub } from '../../models/club';
 import { MatTableDataSource } from '@angular/material/table';
 
+
 @Component({
   selector: 'app-crear-club',
   templateUrl: './crear-club.component.html',
@@ -57,6 +58,7 @@ export class CrearClubComponent implements OnInit {
       this.title = "SUBSCRIBE USERS TO CLUB"
       this.subscribeUsers = true;
     }
+
     this._userService.getUsers().subscribe(
       (userlist) => {
         console.log(userlist);
@@ -134,5 +136,4 @@ export class CrearClubComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }
