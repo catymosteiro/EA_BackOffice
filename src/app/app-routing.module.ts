@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { InfoClubComponent } from './components/info-club/info-club.component';
+import { CrearClubComponent } from './components/crear-club/crear-club.component';
+
 
 // Routes
 const routes: Routes = [
@@ -37,6 +39,7 @@ const routes: Routes = [
   { path: 'crear-event', component: CrearEventComponent, canActivate: [AuthGuard] },
   { path: 'crear-book', component: CrearBookComponent, canActivate: [AuthGuard] },
   { path: 'chat-create', component: ChatCreateComponent, canActivate: [AuthGuard] },
+  { path: 'crear-club', component: CrearClubComponent, canActivate: [AuthGuard] },
 
   // Edit objects
   { path: 'editar-user/:id', component: CrearUserComponent, canActivate: [AuthGuard] },

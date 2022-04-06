@@ -42,6 +42,7 @@ export class CrearEventComponent implements OnInit {
   }
 
   addEvent() {
+    //@ts-ignore
     const event: Events = {
       name: this.eventForm.get('name')?.value,
       description: this.eventForm.get('description')?.value,
@@ -49,7 +50,7 @@ export class CrearEventComponent implements OnInit {
       creationDate: this.eventForm.get('creationDate')?.value,
       usersList: this.eventForm.get('userList')?.value,
       category: this.eventForm.get('category')?.value,
-      position: this.eventForm.get('position')?.value,
+      position: this.eventForm.get('position')?.value
     }
 
     if (this.name !== null) {
