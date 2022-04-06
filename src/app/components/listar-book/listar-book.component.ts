@@ -42,6 +42,7 @@ export class ListarBookComponent implements OnInit {
         console.log(data);
         this.listBooks = data;
         this.dataSource = new MatTableDataSource(this.listBooks);
+        this.dataSource.paginator = this.paginator;
       }, (error: any) => {
         console.log(error);
       })

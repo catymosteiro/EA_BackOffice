@@ -41,6 +41,7 @@ export class ListarClubsComponent implements OnInit {
         console.log(data);
         this.listClubs = data;
         this.dataSource = new MatTableDataSource(this.listClubs);
+        this.dataSource.paginator = this.paginator;
       }, (error: any) => {
         console.log(error);
       })

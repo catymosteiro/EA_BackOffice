@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
 
+  { path: 'subscribe-club/:id', component: CrearClubComponent },
   { path: 'info-club/:id', component: InfoClubComponent },
   { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
 
