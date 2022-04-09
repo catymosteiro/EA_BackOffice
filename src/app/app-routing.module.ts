@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { InfoClubComponent } from './components/info-club/info-club.component';
 import { CrearClubComponent } from './components/crear-club/crear-club.component';
+import { InfoEventComponent } from './components/info-event/info-event.component';
 
 // Routes
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
 
   { path: 'subscribe-club/:id', component: CrearClubComponent },
   { path: 'info-club/:id', component: InfoClubComponent },
+  { path: 'info-event/:id', component: InfoEventComponent },
   { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
 
   // Create an object

@@ -32,13 +32,14 @@ import { ChatCreateComponent } from './components/chat-create/chat-create.compon
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { LoginComponent } from './components/login/login.component';
+import { ListarClubsComponent } from './components/listar-clubs/listar-clubs.component';
+import { InfoClubComponent } from './components/info-club/info-club.component';
+import { CrearClubComponent } from './components/crear-club/crear-club.component';
+import { InfoEventComponent } from './components/info-event/info-event.component';
 
 // Providers
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { TokenInterceptorService } from './service/token-interceptor.service';
-import { ListarClubsComponent } from './components/listar-clubs/listar-clubs.component';
-import { InfoClubComponent } from './components/info-club/info-club.component';
-import { CrearClubComponent } from './components/crear-club/crear-club.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CrearClubComponent } from './components/crear-club/crear-club.component
     ListarClubsComponent,
     InfoClubComponent,
     CrearClubComponent,
+    InfoEventComponent,
   ],
   imports: [
     BrowserModule,

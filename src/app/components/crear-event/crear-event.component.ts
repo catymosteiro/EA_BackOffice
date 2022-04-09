@@ -145,7 +145,7 @@ export class CrearEventComponent implements OnInit {
         this.eventForm.setValue({
           name: data.name,
           description: data.description,
-          admin: data.admin,
+          admin: data.admin._id,
           eventDate: data.eventDate,
           usersList: data.usersList,
           category: data.category,

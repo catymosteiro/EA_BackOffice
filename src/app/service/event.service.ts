@@ -36,4 +36,16 @@ export class EventService {
       responseType: 'text',
     });
   }
+
+  joinEvent(idEvent: string, idUser: string): Observable<string> {
+    return this.http.put(this.url + '/event/join/' + idUser + '/' + idEvent, null, {
+      responseType: 'text',
+    });
+  }
+
+  leaveEvent(idEvent: string, idUser: string): Observable<string> {
+    return this.http.put(this.url + '/event/leave/' + idUser + '/' + idEvent, null, {
+      responseType: 'text',
+    });
+  }
 }
