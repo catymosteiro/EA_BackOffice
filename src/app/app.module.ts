@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 
 // Components
 import { AppComponent } from './app.component';
@@ -73,15 +74,20 @@ import { CrearClubComponent } from './components/crear-club/crear-club.component
     MatTabsModule,
     FormsModule,
     MatStepperModule,
+    MatSelectModule,
   ],
   providers: [
     // JWT
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     // Token interceptor
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}
