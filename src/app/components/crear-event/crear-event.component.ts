@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/service/user.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-crear-event',
@@ -142,16 +143,22 @@ export class CrearEventComponent implements OnInit {
     if (this.name !== null) {
       this.title = 'Editar event';
       this._eventService.getEvent(this.name).subscribe((data) => {
+        const categoriesArray: Category[] = <Category[]><unknown>Array.from(data.category);
+        const categoriesString: string[] = [];
+        for(var i in categoriesArray) {
+          categoriesString.push(categoriesArray[i].name)
+        }
         this.eventForm.setValue({
           name: data.name,
           description: data.description,
           admin: data.admin._id,
           eventDate: data.eventDate,
           usersList: data.usersList,
-          category: data.category,
+          category: categoriesArray[0].name,
           latitude: data.location.latitude,
           longitude: data.location.longitude,
         });
+        this.categories.setValue(categoriesString);
       });
     }
   }
