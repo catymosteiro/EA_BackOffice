@@ -55,20 +55,18 @@ export class CrearEventComponent implements OnInit {
     });
 
     this.name = this.aRouter.snapshot.paramMap.get('name');
-    console.log(this.name);
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.editEvent();
 
     this._userService.getUsers().subscribe(
       (userlist) => {
         console.log(userlist);
         this.users = userlist;
-        this.dataSource = new MatTableDataSource(this.users);
-        this.dataSource.paginator = this.paginator;
+        
+        this.editEvent();
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -83,7 +81,6 @@ export class CrearEventComponent implements OnInit {
         for (let i = 0; i < categoriesJSON.length; i++) {
           this.categoriesList.push(categoriesJSON[i].name);
         }
-        console.log(this.categoriesList);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -148,18 +145,38 @@ export class CrearEventComponent implements OnInit {
         for(var i in categoriesArray) {
           categoriesString.push(categoriesArray[i].name)
         }
+        this.categories.setValue(categoriesString);
+
         this.eventForm.setValue({
           name: data.name,
           description: data.description,
           admin: data.admin._id,
           eventDate: data.eventDate,
           usersList: data.usersList,
-          category: categoriesArray[0].name,
+          category: data.category,
           latitude: data.location.latitude,
           longitude: data.location.longitude,
         });
-        this.categories.setValue(categoriesString);
+        
+        this.checkedUsers = data.usersList;
+        this.users = this.users.filter((user, i) => {
+          try {
+            console.log(data.usersList[i].name);
+            console.log(user.name);
+            if(this.users[i].name !== null && user.name !== null && this.users[i].name === user.name) { console.log(false); return false;}
+            else { console.log(true); return true;}
+          }catch (e) {
+              console.log(e);
+              return true;
+          }
+        });
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
       });
+    }
+    else {
+      this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource.paginator = this.paginator;
     }
   }
 
