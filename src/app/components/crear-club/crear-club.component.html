@@ -31,12 +31,15 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input type="text" formControlName="category" class="form-control form-control-lg"
-                                    placeholder="Category" />
-                                <div class="text-danger"
-                                    *ngIf=" clubForm.get('category')?.hasError('required') && clubForm.get('category')?.touched">
-                                    <span>Introdueix alguna categoria</span>
-                                </div>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Categories</mat-label>
+                                    <mat-select (openedChange)="changeSelectedCategories($event)"
+                                        [formControl]="categories" multiple>
+                                        <mat-option *ngFor="let category of categoriesList" [value]="category">{{
+                                            category }}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-error *ngIf="categories.hasError('required')">Choose some categories</mat-error>
                             </div>
                         </div>
                         <div>

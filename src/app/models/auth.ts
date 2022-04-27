@@ -9,4 +9,6 @@ export interface UserSignup {
     mail: string;
     birthDate: Date;
     password: string;
+    role: string[];
+    category: string[];
 }

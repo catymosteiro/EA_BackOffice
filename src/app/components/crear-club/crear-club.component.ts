@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 import { ClubService } from '../../service/club.service';
 import { NewClub } from '../../models/club';
 import { MatTableDataSource } from '@angular/material/table';
+import { ManagementService } from 'src/app/service/management.service';
 
 
 @Component({
@@ -25,6 +26,10 @@ export class CrearClubComponent implements OnInit {
   dataSource = new MatTableDataSource(this.users);
   checkedUsers: User[] = [];
   subscribeUsers: boolean = false;
+  categoriesList: string[] = [];
+  categories = new FormControl();
+  selectedCategories: string = "";
+  isClose: boolean = false;
 
   displayedColumns: string[] = [
     'checkedUsers',
@@ -38,13 +43,13 @@ export class CrearClubComponent implements OnInit {
     private toastr: ToastrService,
     private _clubService: ClubService,
     private _userService: UserService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private _managementService: ManagementService,
   ) {
     this.clubForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       admin: ['', Validators.required],
-      category: ['', Validators.required],
     });
 
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -65,6 +70,20 @@ export class CrearClubComponent implements OnInit {
         this.users = userlist;
         this.dataSource = new MatTableDataSource(this.users);
         this.dataSource.paginator = this.paginator;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        this.toastr.error(
+          `Error ${error.status}, ${error.statusText}`,
+          'Http error'
+        );
+      }
+    );
+    this._managementService.getCategories().subscribe(
+      (categoriesJSON) => {
+        for (let i = 0; i < categoriesJSON.length; i++) {
+          this.categoriesList.push(categoriesJSON[i].name);
+        }
       },
       (error: HttpErrorResponse) => {
         console.log(error);
@@ -95,7 +114,7 @@ export class CrearClubComponent implements OnInit {
       clubName: this.clubForm.get('name')?.value,
       description: this.clubForm.get('description')?.value,
       idAdmin: this.clubForm.get('admin')?.value,
-      category: this.clubForm.get('category')?.value,
+      category: this.selectedCategories,
     };
 
     this._clubService.addClub(club).subscribe(
@@ -135,5 +154,13 @@ export class CrearClubComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  changeSelectedCategories(event: any) {
+    this.isClose = false;
+    if (!event) {
+      this.isClose = true;
+      this.selectedCategories = this.categories.value && this.categories.value.toString();
+    }
   }
 }
