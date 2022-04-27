@@ -27,6 +27,7 @@ const routes: Routes = [
 
   // List of objects
   { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard] },
+
   { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
