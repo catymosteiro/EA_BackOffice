@@ -5,12 +5,12 @@ export interface Book {
   title: string;
   ISBN: string;
   //writer: Writer;
-  photoURL: string [];
+  photoURL: string;
   description: string;
   publishedDate: Date;
   editorial: string;
-  rate : number;
-  categories: string[];
+  rate: number;
+  category: string;
   //comments: Comment[];
 
 }

@@ -60,7 +60,7 @@ export class CrearUserComponent implements OnInit {
       this._userService.editUser(this.id, user).subscribe(
         (data) => {
           this.toastr.info('El user ha estat editat amb exit!', 'User Editat');
-          this.router.navigate(['/']);
+          this.router.navigate(['/listar-users/']);
         },
         (error) => {
           console.log(error);
