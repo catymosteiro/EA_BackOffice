@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'home', component: DashBoardComponent, canActivate: [AuthGuard] },
 
   // List of objects
-  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
+  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'ADMIN' } },
   { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
