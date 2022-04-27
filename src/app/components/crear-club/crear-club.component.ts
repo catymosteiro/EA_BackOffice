@@ -121,7 +121,7 @@ export class CrearClubComponent implements OnInit {
       (data) => {
         this.toastr.success('El Club ha estat creat amb exit!', 'Club Creat');
         console.log(data);
-        console.log(data._id!);
+        console.log("this is teh id" + data._id!);
         this.checkedUsers.map(userID => {
           this._clubService.subscribe(data._id!, userID._id!).subscribe()
         });

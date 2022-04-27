@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'home', component: DashBoardComponent, canActivate: [AuthGuard] },
 
   // List of objects
-  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'ADMIN' } },
+  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard] },
+
   { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
@@ -37,7 +38,7 @@ const routes: Routes = [
   { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
 
   // Create an object
-  { path: 'crear-user', component: CrearUserComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
+  { path: 'crear-user', component: CrearUserComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'ADMIN' } },
   { path: 'crear-event', component: CrearEventComponent, canActivate: [AuthGuard] },
   { path: 'crear-book', component: CrearBookComponent, canActivate: [AuthGuard] },
   { path: 'chat-create', component: ChatCreateComponent, canActivate: [AuthGuard] },
