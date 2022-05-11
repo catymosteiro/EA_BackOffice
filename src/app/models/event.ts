@@ -6,13 +6,11 @@ export interface Events extends Dates {
   name: string;
   description: string;
   admin: User;
-  creationDate: Date;
+  eventDate?: Date;
   usersList: User[];
   category: string;
-  position: {
-    type: {
-      latitude: number;
-      longitude: number;
-    };
+  location: {
+    latitude: number;
+    longitude: number;
   };
 }

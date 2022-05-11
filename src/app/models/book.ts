@@ -5,11 +5,11 @@ export interface Book extends Dates {
   title: string;
   ISBN: string;
   //writer: Writer;
-  photoURL: string[];
+  photoURL: string;
   description: string;
   publishedDate: Date;
   editorial: string;
   rate: number;
-  categories: string[];
+  category: string;
   //comments: Comment[];
 }

@@ -9,7 +9,6 @@ export interface Club extends Dates {
   chat: Chat;
   usersList: User[];
   category: string;
-
 }
 
 export interface NewClub {

@@ -38,12 +38,12 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" formControlName="publishedDate" class="form-control form-control-lg"
-                                placeholder="publishedDate">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('publishedDate')?.hasError('required') && bookForm.get('publishedDate')?.touched">
-                                <span>The publishedDate is required</span>
-                            </div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Published Date</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="publishedDate" />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
                         </div>
                         <div class="mb-3">
                             <input type="text" formControlName="editorial" class="form-control form-control-lg"
@@ -62,12 +62,15 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" formControlName="categories" class="form-control form-control-lg"
-                                placeholder="categories">
-                            <div class="text-danger"
-                                *ngIf="bookForm.get('categories')?.hasError('required') && bookForm.get('categories')?.touched">
-                                <span>The categories is required</span>
-                            </div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Categories</mat-label>
+                                <mat-select (openedChange)="changeSelectedCategories($event)" [formControl]="categories"
+                                    multiple>
+                                    <mat-option *ngFor="let category of categoriesList" [value]="category">{{ category
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-error *ngIf="categories.hasError('required')">Choose some categories</mat-error>
                         </div>
                         <div class="mb-3">
                             <button routerLink="/listar-books"

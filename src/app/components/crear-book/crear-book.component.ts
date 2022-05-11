@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { identifierName } from '@angular/compiler';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/service/book.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ManagementService } from 'src/app/service/management.service';
+import { Category } from 'src/app/models/category';
 
 
 @Component({
@@ -16,16 +19,20 @@ import { BookService } from 'src/app/service/book.service';
 })
 export class CrearBookComponent implements OnInit {
   bookForm: FormGroup;
-  bookList: Book[] = [];
   title = 'Add Book';
   _id: string | null;
+  categoriesList: string[] = [];
+  categories = new FormControl();
+  selectedCategories: string = "";
+  isClose: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private _bookService: BookService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private _managementService: ManagementService,
   ) {
     this.bookForm = this.fb.group({
       title: [''],
@@ -35,14 +42,26 @@ export class CrearBookComponent implements OnInit {
       publishedDate: [''],
       editorial: [''],
       rate: [''],
-      categories: [''],
     });
 
     this._id = this.aRouter.snapshot.paramMap.get('_id');
-    console.log(this._id);
   }
 
   ngOnInit(): void {
+    this._managementService.getCategories().subscribe(
+      (categoriesJSON) => {
+        for (let i = 0; i < categoriesJSON.length; i++) {
+          this.categoriesList.push(categoriesJSON[i].name);
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        this.toastr.error(
+          `Error ${error.status}, ${error.statusText}`,
+          'Http error'
+        );
+      }
+    );
     this.editBook();
   }
 
@@ -55,7 +74,7 @@ export class CrearBookComponent implements OnInit {
       publishedDate: this.bookForm.get('publishedDate')?.value,
       editorial: this.bookForm.get('editorial')?.value,
       rate: this.bookForm.get('rate')?.value,
-      categories: this.bookForm.get('categories')?.value,
+      category: this.selectedCategories,
     };
 
     if (this._id !== null) {
@@ -90,6 +109,13 @@ export class CrearBookComponent implements OnInit {
     if (this._id !== null) {
       this.title = 'Edit book';
       this._bookService.getBook(this._id).subscribe((data) => {
+        const categoriesArray: Category[] = <Category[]><unknown>Array.from(data.category);
+        const categoriesString: string[] = [];
+        for (var i in categoriesArray) {
+          categoriesString.push(categoriesArray[i].name);
+        }
+        this.categories.setValue(this.selectedCategories);
+
         console.log(data);
         this.bookForm.setValue({
           title: data.title,
@@ -98,10 +124,16 @@ export class CrearBookComponent implements OnInit {
           description: data.description,
           publishedDate: data.publishedDate,
           editorial: data.editorial,
-          rate: data.rate,
-          categories: data.categories,
+          rate: data.rate
         });
       });
+    }
+  }
+  changeSelectedCategories(event: any) {
+    this.isClose = false;
+    if (!event) {
+      this.isClose = true;
+      this.selectedCategories = this.categories.value && this.categories.value.toString();
     }
   }
 }

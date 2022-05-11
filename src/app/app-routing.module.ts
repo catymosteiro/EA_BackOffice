@@ -15,7 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { InfoClubComponent } from './components/info-club/info-club.component';
 import { CrearClubComponent } from './components/crear-club/crear-club.component';
-
+import { InfoEventComponent } from './components/info-event/info-event.component';
 
 // Routes
 const routes: Routes = [
@@ -26,16 +26,19 @@ const routes: Routes = [
   { path: 'home', component: DashBoardComponent, canActivate: [AuthGuard] },
 
   // List of objects
-  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
+  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard] },
+
   { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
 
+  { path: 'subscribe-club/:id', component: CrearClubComponent },
   { path: 'info-club/:id', component: InfoClubComponent },
+  { path: 'info-event/:id', component: InfoEventComponent },
   { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
 
   // Create an object
-  { path: 'crear-user', component: CrearUserComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' } },
+  { path: 'crear-user', component: CrearUserComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'ADMIN' } },
   { path: 'crear-event', component: CrearEventComponent, canActivate: [AuthGuard] },
   { path: 'crear-book', component: CrearBookComponent, canActivate: [AuthGuard] },
   { path: 'chat-create', component: ChatCreateComponent, canActivate: [AuthGuard] },

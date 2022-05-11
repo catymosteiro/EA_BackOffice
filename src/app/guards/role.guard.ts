@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
 import decode from 'jwt-decode'
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class RoleGuard implements CanActivate {
     localStorage.setItem('idUser', id);
     localStorage.setItem('userName', userName);
     localStorage.setItem('role', role);
-    if (!this.authService.isAuth() || role !== expectedRole) {
+    if (!this.authService.isAuth() || !role.includes(expectedRole)) {
       console.log('Usuario no autorizado para la vista');
       return false;
     }
