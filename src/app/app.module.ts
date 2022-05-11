@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 
 // Components
@@ -76,6 +77,7 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     MatTabsModule,
     FormsModule,
     MatStepperModule,
+    MatCardModule,
     MatSelectModule,
   ],
   providers: [

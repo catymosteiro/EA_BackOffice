@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Club, NewClub } from '../models/club';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClubService {
-  url = 'http://localhost:3000/club/';
+  url = environment.API_URL + '/club/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getClubs(): Observable<Club[]> {
     return this.http.get<Club[]>(this.url);
@@ -24,15 +25,21 @@ export class ClubService {
   }
 
   editClub(id: string, club: Club): Observable<Object> {
-    return this.http.put<Object>(this.url + id, { "name": club.name, "description": club.description });
+    return this.http.put<Object>(this.url + id, {
+      name: club.name,
+      description: club.description,
+    });
   }
 
   subscribe(id: string, idUser: string): Observable<Object> {
-    return this.http.put<Object>(this.url, { "idUser": idUser, "idClub": id });
+    return this.http.put<Object>(this.url, { idUser: idUser, idClub: id });
   }
 
   unsubscribe(id: string, idUser: string): Observable<Object> {
-    return this.http.put<Object>(this.url + 'unsubscribe', { "idUser": idUser, "idClub": id });
+    return this.http.put<Object>(this.url + 'unsubscribe', {
+      idUser: idUser,
+      idClub: id,
+    });
   }
 
   deleteClub(id: string): Observable<Object> {

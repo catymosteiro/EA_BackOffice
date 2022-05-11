@@ -1,0 +1,13 @@
+.flex-container {
+  position: relative;
+  bottom: 0px;
+  top: 0px;
+
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+
+  border: 1px solid black;
+}

@@ -1,6 +1,6 @@
 import Dates from './dates';
 
-export interface Book {
+export interface Book extends Dates {
   _id?: string;
   title: string;
   ISBN: string;
@@ -12,5 +12,4 @@ export interface Book {
   rate: number;
   category: string;
   //comments: Comment[];
-
 }

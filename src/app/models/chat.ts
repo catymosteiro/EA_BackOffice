@@ -1,6 +1,7 @@
+import Dates from './dates';
 import { User } from './user';
 
-export interface Chat extends Date {
+export interface Chat extends Dates {
   _id?: string;
   name: String;
   messages: string;

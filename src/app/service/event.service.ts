@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Events } from '../models/event';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  url = 'http://localhost:3000';
+  url = environment.API_URL;
 
   constructor(private http: HttpClient) {}
 
@@ -38,14 +39,22 @@ export class EventService {
   }
 
   joinEvent(idEvent: string, idUser: string): Observable<string> {
-    return this.http.put(this.url + '/event/join/' + idUser + '/' + idEvent, null, {
-      responseType: 'text',
-    });
+    return this.http.put(
+      this.url + '/event/join/' + idUser + '/' + idEvent,
+      null,
+      {
+        responseType: 'text',
+      }
+    );
   }
 
   leaveEvent(idEvent: string, idUser: string): Observable<string> {
-    return this.http.put(this.url + '/event/leave/' + idUser + '/' + idEvent, null, {
-      responseType: 'text',
-    });
+    return this.http.put(
+      this.url + '/event/leave/' + idUser + '/' + idEvent,
+      null,
+      {
+        responseType: 'text',
+      }
+    );
   }
 }

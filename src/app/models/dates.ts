@@ -1,4 +1,4 @@
 export default interface Dates {
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
