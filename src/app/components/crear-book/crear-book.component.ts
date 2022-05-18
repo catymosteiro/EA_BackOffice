@@ -42,6 +42,7 @@ export class CrearBookComponent implements OnInit {
       publishedDate: [''],
       editorial: [''],
       rate: [''],
+      writer: [''],
     });
 
     this._id = this.aRouter.snapshot.paramMap.get('_id');
@@ -75,6 +76,7 @@ export class CrearBookComponent implements OnInit {
       editorial: this.bookForm.get('editorial')?.value,
       rate: this.bookForm.get('rate')?.value,
       category: this.selectedCategories,
+      writer: this.bookForm.get('writer')?.value,
     };
 
     if (this._id !== null) {
@@ -124,7 +126,8 @@ export class CrearBookComponent implements OnInit {
           description: data.description,
           publishedDate: data.publishedDate,
           editorial: data.editorial,
-          rate: data.rate
+          rate: data.rate,
+          writer: data.writer
         });
       });
     }

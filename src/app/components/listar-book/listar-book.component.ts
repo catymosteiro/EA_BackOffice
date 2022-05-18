@@ -16,6 +16,7 @@ export class ListarBookComponent implements OnInit {
   displayedColumns: string[] = [
     '_id',
     'title',
+    'writer',
     'ISBN',
     'photoURL',
     'description',
