@@ -22,6 +22,14 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <input type="text" formControlName="writer" class="form-control form-control-lg"
+                                placeholder="writer">
+                            <div class="text-danger"
+                                *ngIf="bookForm.get('writer')?.hasError('required') && bookForm.get('writer')?.touched">
+                                <span>The writer is required</span>
+                            </div>  
+                        </div>             
+                        <div class="mb-3">
                             <input type="text" formControlName="photoURL" class="form-control form-control-lg"
                                 placeholder="photoURL">
                             <div class="text-danger"

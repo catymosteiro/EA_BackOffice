@@ -4,7 +4,7 @@ export interface Book extends Dates {
   _id?: string;
   title: string;
   ISBN: string;
-  //writer: Writer;
+  writer: String;
   photoURL: string;
   description: string;
   publishedDate: Date;

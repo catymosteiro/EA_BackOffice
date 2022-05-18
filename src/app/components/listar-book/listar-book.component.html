@@ -24,6 +24,13 @@
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="writer">
+            <th mat-header-cell *matHeaderCellDef>writer</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.writer }}
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="ISBN">
             <th mat-header-cell *matHeaderCellDef>ISBN</th>
             <td mat-cell *matCellDef="let element">{{ element.ISBN }}</td>
