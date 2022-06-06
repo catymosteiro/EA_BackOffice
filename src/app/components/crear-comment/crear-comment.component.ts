@@ -74,7 +74,7 @@ export class CrearCommentComponent implements OnInit {
       console.log(comment);
       this._commentService.addComment(comment).subscribe(
         (data) => {
-          this.toastr.success('El comentari ha estat creat amb exit!', 'Comentari creat');
+          this.toastr.success('El comentari ha estat creat amb exit', 'Comentari creat');
           this.router.navigate(['/listar-comments']);
         },
         (error) => {
