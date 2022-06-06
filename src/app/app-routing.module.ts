@@ -16,6 +16,8 @@ import { RoleGuard } from './guards/role.guard';
 import { InfoClubComponent } from './components/info-club/info-club.component';
 import { CrearClubComponent } from './components/crear-club/crear-club.component';
 import { InfoEventComponent } from './components/info-event/info-event.component';
+import { CrearCommentComponent } from './components/crear-comment/crear-comment.component';
+import { ListarCommentComponent } from './components/listar-comments/listar-comments.component';
 
 // Routes
 const routes: Routes = [
@@ -27,7 +29,7 @@ const routes: Routes = [
 
   // List of objects
   { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard] },
-
+  { path: 'listar-comments', component: ListarCommentComponent, canActivate: [AuthGuard] },
   { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
   { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
   { path: 'listar-clubs', component: ListarClubsComponent },
@@ -43,11 +45,13 @@ const routes: Routes = [
   { path: 'crear-book', component: CrearBookComponent, canActivate: [AuthGuard] },
   { path: 'chat-create', component: ChatCreateComponent, canActivate: [AuthGuard] },
   { path: 'crear-club', component: CrearClubComponent, canActivate: [AuthGuard] },
+  { path: 'crear-comment', component: CrearCommentComponent, canActivate: [AuthGuard] },
 
   // Edit objects
   { path: 'editar-user/:id', component: CrearUserComponent, canActivate: [AuthGuard] },
   { path: 'editar-event/:name', component: CrearEventComponent, canActivate: [AuthGuard] },
   { path: 'editar-book/:_id', component: CrearBookComponent, canActivate: [AuthGuard] },
+  { path: 'editar-comment/:_id', component: CrearCommentComponent, canActivate: [AuthGuard] },
 
   // In case of a wrong URL, the code redirects to the main path
   { path: '**', redirectTo: '', pathMatch: 'full' },

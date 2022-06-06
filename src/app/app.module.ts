@@ -26,8 +26,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CrearUserComponent } from './components/crear-user/crear-user.component';
 import { ListarUsersComponent } from './components/listar-users/listar-users.component';
 import { ListarEventsComponent } from './components/listar-events/listar-events.component';
+import { ListarCommentComponent } from './components/listar-comments/listar-comments.component';
 import { CrearEventComponent } from './components/crear-event/crear-event.component';
 import { CrearBookComponent } from './components/crear-book/crear-book.component';
+import { CrearCommentComponent } from './components/crear-comment/crear-comment.component';
 import { ListarBookComponent } from './components/listar-book/listar-book.component';
 import { ChatCreateComponent } from './components/chat-create/chat-create.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
@@ -52,6 +54,8 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     CrearEventComponent,
     CrearBookComponent,
     ListarBookComponent,
+    CrearCommentComponent,
+    ListarCommentComponent,
     ChatCreateComponent,
     ChatListComponent,
     DashBoardComponent,
