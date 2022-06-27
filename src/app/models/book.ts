@@ -1,18 +1,20 @@
+<<<<<<< HEAD
 import { ThisReceiver } from "@angular/compiler";
 
 
 export class Book {
+=======
+import Dates from './dates';
+
+export interface Book extends Dates {
+  _id?: string;
+>>>>>>> develop
   title: string;
-  author: string;
-  category: string;
   ISBN: string;
-  releaseDate: Date;
-  publicationDate: Date;
-  //  editorial: Editorial
-  format: string;
-  quantity: number;
-  sells: number;
+  writer: String;
+  photoURL: string;
   description: string;
+<<<<<<< HEAD
 
 
   constructor (title: string, author: string, category: string,   ISBN: string, releaseDate: Date, publicationDate: Date, format: string, quantity: number, sells: number, description: string ){
@@ -27,5 +29,12 @@ export class Book {
     this.sells=sells;
     this.description=description
   }
+=======
+  publishedDate: Date;
+  editorial: string;
+  rate: number;
+  category: string;
+  //comments: Comment[];
+>>>>>>> develop
 }
 

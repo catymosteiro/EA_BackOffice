@@ -15,8 +15,13 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class CrearUserComponent implements OnInit {
   userForm: FormGroup;
+<<<<<<< HEAD
   title = "Crear User";
   name: string | null;
+=======
+  title = 'Crear User';
+  id: string | null;
+>>>>>>> develop
 
   constructor(private fb: FormBuilder, 
               private router: Router, 
@@ -24,14 +29,15 @@ export class CrearUserComponent implements OnInit {
               private _userService: UserService,
               private aRouter: ActivatedRoute) { 
     this.userForm = this.fb.group({
-      id: ['', Validators.required],
+      username: ['', Validators.required],
       name: ['', Validators.required],
-      age: ['', Validators.required],
+      mail: ['', Validators.required],
       password: ['', Validators.required],
+      birthDate: ['', Validators.required],
     });
 
-    this.name = this.aRouter.snapshot.paramMap.get('name');
-    console.log(this.name);
+    this.id = this.aRouter.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
   ngOnInit(): void {
@@ -39,6 +45,7 @@ export class CrearUserComponent implements OnInit {
   }
 
   addUser() {
+<<<<<<< HEAD
     const user: User = {
       id: this.userForm.get('id')?.value,
       name: this.userForm.get('name')?.value,
@@ -66,10 +73,51 @@ export class CrearUserComponent implements OnInit {
         console.log(error);
         this.userForm.reset();
       })
+=======
+    //todo convert all user to my user
+
+    console.log(typeof this.userForm.get('birthDate')?.value);
+
+    //@ts-ignore
+    const user: User = {
+      name: this.userForm.get('name')?.value,
+      birthDate: this.userForm.get('birthDate')?.value,
+      password: this.userForm.get('password')?.value,
+      mail: this.userForm.get('mail')?.value,
+      userName: this.userForm.get('username')?.value,
+    };
+
+    if (this.id !== null) {
+      // Edit user
+      this._userService.editUser(this.id, user).subscribe(
+        (data) => {
+          this.toastr.info('El user ha estat editat amb exit!', 'User Editat');
+          this.router.navigate(['/listar-users/']);
+        },
+        (error) => {
+          console.log(error);
+          this.userForm.reset();
+        }
+      );
+    } else {
+      // Add user
+      console.log(user);
+      this._userService.addUser(user).subscribe(
+        (data) => {
+          this.toastr.success('El user ha estat creat amb exit!', 'User Creat');
+          this.router.navigate(['/listar-users/']);
+        },
+        (error) => {
+          console.log(error);
+          this.userForm.reset();
+        }
+      );
+>>>>>>> develop
     }
   }
 
   editUser() {
+<<<<<<< HEAD
     if(this.name !== null) {
       this.title = 'Editar user';
       this._userService.getUser(this.name).subscribe(data => {
@@ -80,6 +128,21 @@ export class CrearUserComponent implements OnInit {
           password: data.password,
         })
       })
+=======
+    if (this.id !== null) {
+      this.title = 'Editar user';
+      this._userService.getUser(this.id).subscribe((data) => {
+        console.log('Editar user data');
+        console.log(data);
+        this.userForm.setValue({
+          name: data.name,
+          username: data.userName,
+          birthDate: data.birthDate,
+          password: data.password,
+          mail: data.mail,
+        });
+      });
+>>>>>>> develop
     }
   }
 

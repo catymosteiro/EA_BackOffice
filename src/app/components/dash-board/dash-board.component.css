@@ -1,0 +1,20 @@
+.flex-container {
+  position: relative;
+  bottom: 0px;
+  top: 0px;
+  height: 85vh;
+
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  align-items: center;
+}
+.mat-card {
+  width: 250px;
+}
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
