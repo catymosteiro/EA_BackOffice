@@ -31,8 +31,6 @@ import { CrearEventComponent } from './components/crear-event/crear-event.compon
 import { CrearBookComponent } from './components/crear-book/crear-book.component';
 import { CrearCommentComponent } from './components/crear-comment/crear-comment.component';
 import { ListarBookComponent } from './components/listar-book/listar-book.component';
-<<<<<<< HEAD
-=======
 import { ChatCreateComponent } from './components/chat-create/chat-create.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
@@ -45,7 +43,6 @@ import { InfoEventComponent } from './components/info-event/info-event.component
 // Providers
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { TokenInterceptorService } from './service/token-interceptor.service';
->>>>>>> develop
 
 @NgModule({
   declarations: [
@@ -56,9 +53,6 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     ListarEventsComponent,
     CrearEventComponent,
     CrearBookComponent,
-<<<<<<< HEAD
-    ListarBookComponent
-=======
     ListarBookComponent,
     CrearCommentComponent,
     ListarCommentComponent,
@@ -70,7 +64,6 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     InfoClubComponent,
     CrearClubComponent,
     InfoEventComponent,
->>>>>>> develop
   ],
   imports: [
     BrowserModule,
