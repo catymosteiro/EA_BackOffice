@@ -28,30 +28,96 @@ const routes: Routes = [
   { path: 'home', component: DashBoardComponent, canActivate: [AuthGuard] },
 
   // List of objects
-  { path: 'listar-users', component: ListarUsersComponent, canActivate: [AuthGuard] },
-  { path: 'listar-comments', component: ListarCommentComponent, canActivate: [AuthGuard] },
-  { path: 'listar-books', component: ListarBookComponent, canActivate: [AuthGuard] },
-  { path: 'listar-events', component: ListarEventsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'listar-users',
+    component: ListarUsersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'listar-comments',
+    component: ListarCommentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'listar-books',
+    component: ListarBookComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'listar-events',
+    component: ListarEventsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'listar-clubs', component: ListarClubsComponent },
 
   { path: 'subscribe-club/:id', component: CrearClubComponent },
   { path: 'info-club/:id', component: InfoClubComponent },
   { path: 'info-event/:id', component: InfoEventComponent },
-  { path: 'chat-list/:id', component: ChatListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'chat-list/:id',
+    component: ChatListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'chat-list',
+    component: ChatListComponent,
+    canActivate: [AuthGuard],
+  },
 
   // Create an object
-  { path: 'crear-user', component: CrearUserComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'ADMIN' } },
-  { path: 'crear-event', component: CrearEventComponent, canActivate: [AuthGuard] },
-  { path: 'crear-book', component: CrearBookComponent, canActivate: [AuthGuard] },
-  { path: 'chat-create', component: ChatCreateComponent, canActivate: [AuthGuard] },
-  { path: 'crear-club', component: CrearClubComponent, canActivate: [AuthGuard] },
-  { path: 'crear-comment', component: CrearCommentComponent, canActivate: [AuthGuard] },
+  {
+    path: 'crear-user',
+    component: CrearUserComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'ADMIN' },
+  },
+  {
+    path: 'crear-event',
+    component: CrearEventComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'crear-book',
+    component: CrearBookComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'chat-create',
+    component: ChatCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'crear-club',
+    component: CrearClubComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'crear-comment',
+    component: CrearCommentComponent,
+    canActivate: [AuthGuard],
+  },
 
   // Edit objects
-  { path: 'editar-user/:id', component: CrearUserComponent, canActivate: [AuthGuard] },
-  { path: 'editar-event/:name', component: CrearEventComponent, canActivate: [AuthGuard] },
-  { path: 'editar-book/:_id', component: CrearBookComponent, canActivate: [AuthGuard] },
-  { path: 'editar-comment/:_id', component: CrearCommentComponent, canActivate: [AuthGuard] },
+  {
+    path: 'editar-user/:id',
+    component: CrearUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'editar-event/:name',
+    component: CrearEventComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'editar-book/:_id',
+    component: CrearBookComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'editar-comment/:_id',
+    component: CrearCommentComponent,
+    canActivate: [AuthGuard],
+  },
 
   // In case of a wrong URL, the code redirects to the main path
   { path: '**', redirectTo: '', pathMatch: 'full' },
@@ -61,4 +127,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

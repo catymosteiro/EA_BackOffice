@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="class row">
     <div class="col-lg-6 offset-lg-3">
-      <div class="card">
+      <div>
         <div class="card-body text-center">
           <span class="title"> {{ title | uppercase }} </span>
           <form class="mt-3" [formGroup]="eventForm" (ngSubmit)="addEvent()">
@@ -82,7 +82,11 @@
             <div>
               <mat-form-field appearance="fill">
                 <mat-label>Categories</mat-label>
-                <mat-select (openedChange)="changeSelectedCategories($event)" [formControl]="categories" multiple>
+                <mat-select
+                  (openedChange)="changeSelectedCategories($event)"
+                  [formControl]="categories"
+                  multiple
+                >
                   <mat-option
                     *ngFor="let category of categoriesList"
                     [value]="category"
