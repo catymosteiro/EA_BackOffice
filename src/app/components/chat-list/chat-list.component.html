@@ -1,44 +1,75 @@
 <div class="container mt-5">
+  <span class="title" style="font-style: italic; color: rgb(19, 19, 94)"
+    >CHATS LIST</span
+  >
   <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <div class="card">
-        <div class="card-body text-center">
-          <span class="title">LLISTAT DE CHATS</span>
-          <!-- <button class="btn btn-success float-end mx-1" routerLink="/">
-            ANAR A USERS
-          </button>
-          <button class="btn btn-success float-end" routerLink="/chat-create">
-            NOU CHAT
-          </button> -->
-          <table *ngIf="listChats.length > 0" class="table table-striped mt-3">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Participants</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let chat of listChats">
-                <td>{{ chat._id }}</td>
-                <td>{{ chat.name }}</td>
-                <td>{{ parseMembers(chat) }}</td>
-                <td>
-                  <i
-                    (click)="deleteChat(chat._id!)"
-                    class="fa-solid fa-trash text-danger"
-                  ></i>
-                </td>
-              </tr>
-            </tbody>
+    <div>
+      <div class="card-body">
+        <button
+          class="btn btn-success float-end"
+          style="width: auto"
+          routerLink="/chat-create"
+        >
+          <i class="fa-solid fa fa-comments">+</i>
+        </button>
+        <mat-form-field appearance="standard">
+          <mat-label
+            ><i class="fa-solid fa-magnifying-glass"></i> Search
+          </mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. Chat de Teresita"
+            #input
+          />
+        </mat-form-field>
+
+        <div>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="_id">
+              <th mat-header-cell *matHeaderCellDef>ID</th>
+              <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.name }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="participants">
+              <th mat-header-cell *matHeaderCellDef>Participants</th>
+              <td mat-cell *matCellDef="let element">
+                {{ parseMembers(element) }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <i
+                  (click)="deleteChat(element._id)"
+                  class="fa-solid fa-trash text-danger"
+                ></i>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                No data matching the filter "{{ input.value }}"
+              </td>
+            </tr>
           </table>
-          <h5
-            style="text-align: center; margin-top: 10px"
-            *ngIf="listChats.length == 0"
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 20, 100]"
+            showFirstLastButtons
+            style="background-color: transparent; color: black"
           >
-            No hi ha chats a la base de dades
-          </h5>
+          </mat-paginator>
         </div>
       </div>
     </div>
